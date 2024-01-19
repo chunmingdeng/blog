@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-1031b4e2","path":"/nginx/diffOs.html","title":"不同os下的nginx","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"windows","slug":"windows","link":"#windows","children":[]},{"level":2,"title":"macos","slug":"macos","link":"#macos","children":[]}],"git":{},"filePathRelative":"nginx/diffOs.md","excerpt":""}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-66cf469f","path":"/browser/chrome.html","title":"chrome","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"chrome://omnibox","slug":"chrome-omnibox","link":"#chrome-omnibox","children":[]}],"git":{},"filePathRelative":"browser/chrome.md","excerpt":""}');export{e as data};

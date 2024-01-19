@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-f088a20e","path":"/jsSeries/jsDesignMode.html","title":"JS设计模式","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"jsSeries/jsDesignMode.md","excerpt":""}');export{e as data};

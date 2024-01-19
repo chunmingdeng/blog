@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0c1080ab","path":"/jsSeries/validFn.html","title":"校验函数","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"组合校验函数","slug":"组合校验函数","link":"#组合校验函数","children":[]},{"level":2,"title":"数值类","slug":"数值类","link":"#数值类","children":[]}],"git":{},"filePathRelative":"jsSeries/validFn.md","excerpt":""}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4a62ec3a","path":"/dailyTools/xmind.html","title":"xmind","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"基础设置","slug":"基础设置","link":"#基础设置","children":[]},{"level":2,"title":"实用快捷键","slug":"实用快捷键","link":"#实用快捷键","children":[]}],"git":{},"filePathRelative":"dailyTools/xmind.md","excerpt":""}');export{e as data};

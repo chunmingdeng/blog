@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-6faec972","path":"/vue/vue-router.html","title":"vue router","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"钩子函数","slug":"钩子函数","link":"#钩子函数","children":[]}],"git":{},"filePathRelative":"vue/vue-router.md","excerpt":""}');export{e as data};

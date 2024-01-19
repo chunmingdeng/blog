@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5b762d7e","path":"/antv/base.html","title":"antv","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"problems","slug":"problems","link":"#problems","children":[]}],"git":{},"filePathRelative":"antv/base.md","excerpt":""}');export{e as data};

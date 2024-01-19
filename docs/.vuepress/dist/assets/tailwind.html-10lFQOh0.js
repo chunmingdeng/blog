@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-032a7e9c","path":"/css/tailwind.html","title":"tailwind","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"代码解读","slug":"代码解读","link":"#代码解读","children":[]}],"git":{},"filePathRelative":"css/tailwind.md","excerpt":""}');export{t as data};

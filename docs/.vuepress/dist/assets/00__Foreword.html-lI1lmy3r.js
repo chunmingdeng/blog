@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-70ed6ade","path":"/jsSeries/U_dont_konw_js/00__Foreword.html","title":"Foreword","lang":"zh-CN","frontmatter":{"title":"Foreword"},"headers":[],"git":{},"filePathRelative":"jsSeries/U_dont_konw_js/00__Foreword.md","excerpt":""}');export{e as data};

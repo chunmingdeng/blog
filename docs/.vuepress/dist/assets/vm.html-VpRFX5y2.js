@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-2976116e","path":"/dailyTools/vm.html","title":"虚拟机","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"dailyTools/vm.md","excerpt":""}');export{t as data};

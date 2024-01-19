@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-d3f8efa0","path":"/trash/","title":"杂乱笔记","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"重排和重绘link","slug":"重排和重绘link","link":"#重排和重绘link","children":[]}],"git":{},"filePathRelative":"trash/index.md","excerpt":""}');export{e as data};

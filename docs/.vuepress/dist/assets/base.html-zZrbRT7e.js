@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-078fe37f","path":"/codeTransform/base.html","title":"代码转义","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"es6=>es5","slug":"es6-es5","link":"#es6-es5","children":[]}],"git":{},"filePathRelative":"codeTransform/base.md","excerpt":""}');export{e as data};

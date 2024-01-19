@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4f43b909","path":"/git/summary.html","title":"summary","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"reset command","slug":"reset-command","link":"#reset-command","children":[]}],"git":{},"filePathRelative":"git/summary.md","excerpt":""}');export{e as data};

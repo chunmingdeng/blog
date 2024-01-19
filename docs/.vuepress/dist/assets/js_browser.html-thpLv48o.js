@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-22033af1","path":"/jsSeries/js_browser.html","title":"js & browser","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"jsSeries/js&browser.md","excerpt":""}');export{e as data};

@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-e0002fce","path":"/jsPlugin/pixijs/start.html","title":"start","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"jsPlugin/pixijs/start.md","excerpt":""}');export{t as data};

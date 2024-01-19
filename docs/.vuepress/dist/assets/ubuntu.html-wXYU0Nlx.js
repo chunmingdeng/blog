@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-3f3b7d0a","path":"/operatingSysten/ubuntu.html","title":"ubuntu","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"字体问题","slug":"字体问题","link":"#字体问题","children":[]}],"git":{},"filePathRelative":"operatingSysten/ubuntu.md","excerpt":""}');export{t as data};

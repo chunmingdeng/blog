@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2781419a","path":"/math/base.html","title":"基础数学知识","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"公式类","slug":"公式类","link":"#公式类","children":[]},{"level":2,"title":"vector","slug":"vector","link":"#vector","children":[]}],"git":{},"filePathRelative":"math/base.md","excerpt":""}');export{e as data};

@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-625e0aee","path":"/jsPlugin/base.html","title":"插件总览","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"jsPlugin/base.md","excerpt":""}');export{e as data};
