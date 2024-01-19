@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-4eb0f0d9","path":"/jsSeries/reg/utils.html","title":"常用Reg","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"jsSeries/reg/utils.md","excerpt":""}');export{e as data};

@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-832c280c","path":"/echarts/base.html","title":"echarts base","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"创建echart实例并挂载","slug":"创建echart实例并挂载","link":"#创建echart实例并挂载","children":[]}],"git":{},"filePathRelative":"echarts/base.md","excerpt":""}');export{e as data};

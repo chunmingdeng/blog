@@ -1,1 +1,0 @@
-import{_ as a,o as t,c as s,a as e,b as c}from"./app-5uqBhi11.js";const o={},r=e("h1",{id:"webgl",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#webgl","aria-hidden":"true"},"#"),c(" webgl")],-1),n=[r];function _(d,l){return t(),s("div",null,n)}const h=a(o,[["render",_],["__file","base.html.vue"]]);export{h as default};

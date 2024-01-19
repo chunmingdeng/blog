@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-72e4dbf7","path":"/toolPackages/base.html","title":"每日一个工具包","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"toolPackages/base.md","excerpt":""}');export{e as data};

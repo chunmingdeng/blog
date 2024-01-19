@@ -1,1 +1,0 @@
-const e=JSON.parse(`{"key":"v-7dc6dcd8","path":"/shortcut/base.html","title":"code tools's shortcut keys","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"vscode","slug":"vscode","link":"#vscode","children":[]},{"level":2,"title":"vim","slug":"vim","link":"#vim","children":[]}],"git":{},"filePathRelative":"shortcut/base.md","excerpt":""}`);export{e as data};

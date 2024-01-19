@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-049ac1b6","path":"/jsSeries/undo_redo.html","title":"undo&redo","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"设计","slug":"设计","link":"#设计","children":[]}],"git":{},"filePathRelative":"jsSeries/undo&redo.md","excerpt":""}');export{e as data};

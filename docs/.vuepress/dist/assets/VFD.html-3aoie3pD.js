@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-290f45a7","path":"/vue/VFD.html","title":"VFD","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"配置","slug":"配置","link":"#配置","children":[]}],"git":{},"filePathRelative":"vue/VFD.md","excerpt":""}');export{e as data};

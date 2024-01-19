@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-592b7406","path":"/nodejs/http.html","title":"http","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"toturial_MDN","slug":"toturial-mdn","link":"#toturial-mdn","children":[]}],"git":{},"filePathRelative":"nodejs/http.md","excerpt":""}');export{t as data};

@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-9f7a2c56","path":"/jsSeries/usualFunction.html","title":"常用函数","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"树结构相关","slug":"树结构相关","link":"#树结构相关","children":[]}],"git":{},"filePathRelative":"jsSeries/usualFunction.md","excerpt":""}');export{e as data};

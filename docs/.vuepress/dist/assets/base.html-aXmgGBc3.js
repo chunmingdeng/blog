@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-20de406d","path":"/3D/webgl/base.html","title":"webgl","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"3D/webgl/base.md","excerpt":""}');export{e as data};

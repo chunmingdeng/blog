@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-3a485c45","path":"/programStyle/common.html","title":"代码规范","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"注释相关","slug":"注释相关","link":"#注释相关","children":[]},{"level":2,"title":"函数注释","slug":"函数注释","link":"#函数注释","children":[]}],"git":{},"filePathRelative":"programStyle/common.md","excerpt":""}');export{e as data};

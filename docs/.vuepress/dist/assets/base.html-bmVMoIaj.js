@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-2a0fb05d","path":"/booksOrDocuments/base.html","title":"相关","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"文档","slug":"文档","link":"#文档","children":[]}],"git":{},"filePathRelative":"booksOrDocuments/base.md","excerpt":""}');export{e as data};

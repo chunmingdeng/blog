@@ -1,1 +1,0 @@
-import{_ as a,o as t,c as s,a as e,b as c}from"./app-5uqBhi11.js";const o={},r=e("h1",{id:"浏览器",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#浏览器","aria-hidden":"true"},"#"),c(" 浏览器")],-1),n=[r];function _(d,i){return t(),s("div",null,n)}const l=a(o,[["render",_],["__file","base.html.vue"]]);export{l as default};

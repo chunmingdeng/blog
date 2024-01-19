@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-24a78ed8","path":"/nodejs/express.html","title":"node server","lang":"zh-CN","frontmatter":{},"headers":[{"level":2,"title":"一个最简单的服务器","slug":"一个最简单的服务器","link":"#一个最简单的服务器","children":[]},{"level":2,"title":"express","slug":"express","link":"#express","children":[]}],"git":{},"filePathRelative":"nodejs/express.md","excerpt":""}');export{e as data};

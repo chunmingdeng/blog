@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-3bfd84eb","path":"/programStyle/rules.html","title":"eslint rules","lang":"zh-CN","frontmatter":{},"headers":[],"git":{},"filePathRelative":"programStyle/rules.md","excerpt":""}');export{e as data};

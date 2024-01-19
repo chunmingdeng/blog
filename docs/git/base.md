@@ -1,4 +1,12 @@
 ## [toturial](https://git-scm.com/book/zh/v2)
+
+## 如何新建一个git repository
+1. 在github或者gitlab上新建一个空仓库，下面以github为例；
+2. 在本地新建一个文件夹rep
+3. 在rep文件夹下`git init`
+4. 添加远端仓库地址`git add remote origin ${remote-rep-address}`
+5. 设置上游分支并推送至远端`git push --set-upstream origin ${branch-name}`
+
 ## git命令
 > `git add .`<br>
 > `git commit -m <message: string>`<br>
