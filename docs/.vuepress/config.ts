@@ -1,14 +1,35 @@
 import { defineUserConfig, defaultTheme } from 'vuepress';
 import { searchProPlugin } from 'vuepress-plugin-search-pro';
+import { hopeTheme } from 'vuepress-theme-hope';
 
 export default defineUserConfig({
     port: 6003,
     lang: 'zh-CN',
     title: 'dengchunming blog',
-    theme: defaultTheme({
+    theme: hopeTheme({
+        // pure: true,
+        fullscreen: true,
+        // encrypt: {
+        //     config: {
+        //         // 这会加密整个 guide 目录，并且两个密码都是可用的
+        //         '/3D/': ['1234', '5678'],
+        //     },
+        // },
         contributors: false,
+        plugins: {
+            searchPro: {
+                indexContent: true,
+                autoSuggestions: false,
+                searchDelay: 300,
+                hotKeys: [{ key: 'k', meta: true }],
+            },
+            copyCode: {},
+            mdEnhance: {
+                // 添加选项卡支持
+                tabs: true,
+            },
+        },
         navbar: [{ text: '百度', link: 'https://www.baidu.com' }],
-        sidebarDepth: 2,
         sidebar: [
             {
                 text: '3D',
@@ -261,12 +282,4 @@ export default defineUserConfig({
     base: '/blog/',
     // href需要带上base
     head: [['link', { rel: 'icon', href: '/blog/favicon.ico' }]],
-    plugins: [
-        searchProPlugin({
-            indexContent: true,
-            autoSuggestions: false,
-            searchDelay: 300,
-            hotKeys: [{ key: 'k', meta: true }],
-        }),
-    ],
 });
