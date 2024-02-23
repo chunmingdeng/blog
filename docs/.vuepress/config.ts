@@ -56,6 +56,11 @@ export default defineUserConfig({
                 children: ['/css/base', '/css/tailwind'],
             },
             {
+                text: 'html',
+                collapsible: true,
+                children: ['/html/svg'],
+            },
+            {
                 text: 'd3',
                 collapsible: true,
                 children: ['/d3/base'],

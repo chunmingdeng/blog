@@ -19,3 +19,30 @@
 13. vue vscode snippets
 14. dotenv
 15. geo data viewer
+
+## markdown config
+---
+### markdown代码快捷提示
+1. ctrl+shfit+p 打开setting的json配置新增
+    ```json
+    // 打开编辑器的markdown文件的code提示
+        "[markdown]": {
+            "editor.quickSuggestions": {
+                "other": "on",
+                "comments": "off",
+                "strings": "off"
+            }
+        },
+    ```
+2. ctrl+shift+p 输入`User snippets`，选择`markdown`类型文件，这时候vscode会创建或者打开一个`markdown.json`配置文件
+3. 根据文件提示在文件中创建对应的模版
+    ```json
+        "markdown 折叠代码块模版": {
+            "prefix": "details",
+            "body": [
+                "<details>\r\n\t<summary>$1</summary>\r\n\r\n```json\r\n```\r\n</details>",
+                "$2"
+            ],
+            "description": "Log output to console"
+        }
+    ```
