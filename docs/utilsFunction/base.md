@@ -59,7 +59,7 @@ getUUID: function() {
 function flatter(arr) {
     return arr.reduce((p, c) => {
         return Array.isArray(c) ?
-        [...p, ...flatter(c)] : 
+        [...p, ...flatter(c)] :
         [...p, c]
     }, [])
 }
@@ -90,7 +90,7 @@ function unique(arr, attr) {
 //eg2
 function unique(arr, attr) {
     return arr.reduce((acc, cur) => {
-        acc.some(s => s[attr] == cur[attr]) ? '' : acc.push(cur) 
+        acc.some(s => s[attr] == cur[attr]) ? '' : acc.push(cur)
         return acc;
     }, [])
 }
@@ -163,4 +163,15 @@ Date.prototype._format = function(fmt = 'YYYY-MM-DD HH:mm:ss') {
     }
     return fmt;
 }
+```
+
+## 日期区间追加时间后缀
+```js
+const timeAppend = (range) => {
+    if(range.length !== 2) throw new Error('日期区间追加时间后缀异常！');
+    if(range[0]) range[0] += ' 00:00:00';
+    if(range[1]) range[1] += ' 23:59:59';
+    return range;
+}
+timeAppend(['2022-02-02', '2022-02-03'])
 ```
