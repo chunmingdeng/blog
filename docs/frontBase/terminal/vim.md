@@ -42,7 +42,7 @@
     H               移动光标到当前屏幕的第一行行首
     M		    移动光标到当前屏幕的中间
     L		    移动过光标到当前屏幕的尾部
-    
+
     w		    移动光标到下一个单词的开头
     e		    移动光标到下一个单词的结尾
 
@@ -61,7 +61,7 @@
     d$		    删除光标到当前行尾
     dH		    删除光标到屏幕显示第一行，（结合H命令）
     dL		    删除光标到屏幕显示的最后一行，结合L命令
-    
+
     // 复制相关
     yw		    复制光标后的一个单词
     yy		    复制当前行
@@ -75,7 +75,7 @@
     :w!             file readonly，force write
     :q              quit
     :q!             quit & give up modify
-    :wq             quit & write 
+    :wq             quit & write
     :w [filename]   write data as another file
     :r [filename]   将文件的内容加到光标后面
     ```

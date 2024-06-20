@@ -1,5 +1,5 @@
-# babel
-> [`babel`](https://babeljs.io) is one code transform plugin    
+# base
+> [`babel`](https://babeljs.io) is one code transform plugin
 > 代码转译工具
 
 ## 定义

@@ -1,4 +1,4 @@
-# vscode相关问题
+# vscode
 
 ## 关于code命令
 > macos更新最新的系统后，系统下的python在/usr/local/bin/python，系统下的python3在/usr/bin/python3，而code的可执行文件的内容中有这么一段：`function realpath() { /usr/bin/python -c "import os,sys; print(os.path.realpath(sys.argv[1]))"`，其中`/usr/bin/python`在新系统下已经不存在了，需要改为`/usr/local/bin/python`，然后code命令就可以正常使用了
@@ -46,3 +46,32 @@
             "description": "Log output to console"
         }
     ```
+
+## vscode
+|key|desc|key|desc|
+|---|---|---|---|
+|ctrl+[\|]|向左/右缩进|
+|ctrl+shift+[\|]|collspase code|
+shift+alt+a|多行注释|
+ctrl+1/2/3|拆分编辑器|
+|ctrl+k/ctrl+f|格式化选中代码|
+alt+鼠标左键|鼠标选择多行光标|
+|ctrl+r|open recent workspace|
+ctrl+shift+c|open terminal at current dir|
+ctrl+shift+w|close vscode|
+ctrl+shift+o|查找当前文件中的所有symbol定义|
+ctrl+~|切换终端面板|
+ctrl+shift+tab|导航历史记录|
+alt+enter|所有搜索结果匹配<br>匹配结果之后插入光标|
+alt+c/r/w|切换查找匹配模式|
+|-----多光标------|
+|alt+鼠标左键|插入光标|
+ctrl+alt+上下键|向上或向下插入光标|
+ctrl+u|撤销上一个光标操作|
+|ctrl+l|选择当前行|
+ctrl+shift+l|匹配当前文档中光标最近的单词并添加光标|
+ctrl+f2|选择文档中出现的所有当前光标前后的单词|
+|ctrl+shift+alt+箭头|列框选择|
+ctrl+shift+alt+pageup/pagedown|页面列框选择|
+
+

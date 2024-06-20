@@ -58,73 +58,212 @@ export default defineUserConfig({
             {
                 text: '3D',
                 collapsible: true,
+                prefix: '/3D',
                 children: [
                     {
+                        text: 'd3',
+                        collapsible: true,
+                        prefix: 'd3',
+                        children: [
+                            {
+                                text: 'base',
+                                link: 'base',
+                                activeMatch: "/d3/base",
+                            }
+                        ],
+                    },
+                    {
                         text: 'webgl',
-                        children: ['/3D/webgl/base'],
+                        collapsible: true,
+                        prefix: 'webgl',
+                        children: [
+                            {
+                                text: 'base',
+                                link: 'base',
+                                activeMatch: "/webgl/base",
+                            }
+                        ],
                     },
                     {
                         text: 'threejs',
+                        collapsible: true,
                         children: ['/3D/threejs/base'],
                     },
                 ],
             },
             {
-                text: 'angular',
+                text: '前端基础',
+                prefix: 'frontBase',
                 collapsible: true,
                 children: [
-                    '/angular/base',
-                    '/angular/component-lib',
-                ],
+                    {
+                        text: 'js系列',
+                        prefix: 'jsSeries',
+                        collapsible: true,
+                        children: [
+                            {
+                                text: 'base',
+                                link: 'jsbase',
+                            },
+                            {
+                                text: '专业名词',
+                                link: 'professionalWords',
+                            },
+                            {
+                                text: 'TypeScript',
+                                link: 'ts',
+                            },
+                            {
+                                text: '设计模式',
+                                link: 'jsDesignMode',
+                            },
+                            {
+                                text: '通用函数',
+                                link: 'usualFunction',
+                            },
+                            {
+                                text: 'js和浏览器',
+                                link: 'js&browser',
+                            },
+                            {
+                                text: '发布者/订阅者',
+                                link: 'p&s',
+                            },
+                            {
+                                text: '撤销/重做',
+                                link: 'undo&redo',
+                            },
+                        ],
+                    },
+                    {
+                        text: 'css',
+                        prefix: 'css',
+                        collapsible: true,
+                        children: ['base', 'tailwind'],
+                    },
+                    {
+                        text: 'html',
+                        prefix: 'html',
+                        collapsible: true,
+                        children: ['svg'],
+                    },
+                    {
+                        text: '正则',
+                        prefix: 'reg',
+                        collapsible: true,
+                        children: [
+                            'base',
+                            'utils',
+                        ],
+                    },
+                    {
+                        text: 'angular',
+                        prefix: 'angular',
+                        collapsible: true,
+                        children: [
+                            'base',
+                            'component-lib',
+                        ],
+                    },
+                    {
+                        text: 'vue',
+                        prefix: 'vue',
+                        collapsible: true,
+                        children: [
+                            { text: 'base', link: 'start' },
+                            { text: 'cli', link: 'vuecli.md' },
+                            {
+                                text: 'plugins',
+                                link: 'plugins.md',
+                            },
+                            {
+                                text: 'fileupload',
+                                link: 'fileUpload.md',
+                            },
+                            {
+                                text: '一款基于vue的流程设计器',
+                                link: 'VFD.md',
+                            },
+                            {
+                                text: 'vueRouter',
+                                link: 'vue-router.md',
+                            },
+                            {
+                                text: 'problems',
+                                link: 'problems.md',
+                            },
+                        ],
+                    },
+                    {
+                        text: 'browser',
+                        prefix: 'browser',
+                        collapsible: true,
+                        children: [
+                            'base',
+                            'chrome',
+                        ],
+                    },
+                    {
+                        text: 'es6',
+                        prefix: 'es6',
+                        collapsible: true,
+                        children: ['object'],
+                    },
+                    {
+                        text: 'webpack',
+                        prefix: 'webpack',
+                        collapsible: true,
+                        children: ['package'],
+                    },
+                    {
+                        text: 'babel',
+                        prefix: 'babel',
+                        collapsible: true,
+                        children: ['base'],
+                    },
+                    {
+                        text: 'IDE工具',
+                        prefix: 'ide',
+                        collapsible: true,
+                        children: ['vscode'],
+                    },
+                    {
+                        text: 'terminal',
+                        prefix: 'terminal',
+                        collapsible: true,
+                        children: [
+                            {
+                                text: 'mac',
+                                link: 'macos',
+                            },
+                            {
+                                text: 'windows',
+                                link: 'windows',
+                            },
+                            { text: 'pm2', link: 'pm2' },
+                            { text: 'vim', link: 'vim' },
+                        ],
+                    },
+                    {
+                        text: '代码规范',
+                        prefix: 'programStyle',
+                        collapsible: true,
+                        children: [
+                            'eslint',
+                            'rules',
+                            'mock',
+                            'common',
+                        ],
+                    },
+                ]
             },
             {
-                text: 'browser',
-                collapsible: true,
-                children: [
-                    '/browser/base',
-                    '/browser/chrome',
-                ],
-            },
-            {
-                text: 'css',
-                collapsible: true,
-                children: ['/css/base', '/css/tailwind'],
-            },
-            {
-                text: 'html',
-                collapsible: true,
-                children: ['/html/svg'],
-            },
-            {
-                text: 'd3',
-                collapsible: true,
-                children: ['/d3/base'],
-            },
-            {
-                text: 'DataBase',
+                text: '数据库',
                 collapsible: true,
                 children: [
                     {
                         text: 'mongodb',
                         link: '/DataBase/mongodb',
-                    },
-                ],
-            },
-            {
-                text: 'es6',
-                collapsible: true,
-                children: [
-                    { text: 'Object', link: '/es6/object' },
-                ],
-            },
-            {
-                text: 'Echarts',
-                collapsible: true,
-                children: [
-                    { text: 'base', link: '/echarts/base' },
-                    {
-                        text: 'options',
-                        link: '/echarts/options',
                     },
                 ],
             },
@@ -139,7 +278,7 @@ export default defineUserConfig({
                 ],
             },
             {
-                text: 'gpgpu',
+                text: 'GPGPU',
                 collapsible: true,
                 children: [
                     { text: 'base', link: '/gpgpu/base' },
@@ -161,69 +300,43 @@ export default defineUserConfig({
                 ],
             },
             {
-                text: 'jsPlugin',
+                text: 'js插件',
+                prefix: 'jsPlugin',
                 collapsible: true,
                 children: [
                     {
+                        text: 'Echarts',
+                        prefix: 'echarts',
+                        collapsible: true,
+                        children: [
+                            { text: 'base', link: 'base' },
+                            {
+                                text: 'options',
+                                link: 'options',
+                            },
+                        ],
+                    },
+                    {
                         text: '文本编辑器',
-                        link: '/jsPlugin/editor',
+                        link: 'editor',
                     },
                     {
                         text: 'jsPlumb',
-                        link: '/jsPlugin/jsPlumb',
+                        link: 'jsPlumb',
                     },
                     {
                         text: 'pixijs',
+                        prefix: 'pixijs',
+                        collapsible: true,
                         children: [
-                            '/jsPlugin/pixijs/start',
-                            '/jsPlugin/pixijs/methods',
-                            '/jsPlugin/pixijs/pixijs',
+                            'base',
+                            'methods',
+                            'pixijs',
                         ],
                     },
-                ],
-            },
-            {
-                text: 'js系列',
-                collapsible: true,
-                children: [
                     {
-                        text: 'base',
-                        link: '/jsSeries/jsbase',
-                    },
-                    {
-                        text: '专业名词',
-                        link: '/jsSeries/professionalWords',
-                    },
-                    {
-                        text: 'TypeScript',
-                        link: '/jsSeries/ts',
-                    },
-                    {
-                        text: '设计模式',
-                        link: '/jsSeries/jsDesignMode',
-                    },
-                    {
-                        text: '通用函数',
-                        link: '/jsSeries/usualFunction',
-                    },
-                    {
-                        text: 'js和浏览器',
-                        link: '/jsSeries/js&browser',
-                    },
-                    {
-                        text: '发布者/订阅者',
-                        link: '/jsSeries/p&s',
-                    },
-                    {
-                        text: '撤销/重做',
-                        link: '/jsSeries/undo&redo',
-                    },
-                    {
-                        text: '正则',
-                        children: [
-                            '/jsSeries/reg/base',
-                            '/jsSeries/reg/utils',
-                        ],
+                        text: '滑动校验',
+                        link: 'slideVerify',
                     },
                 ],
             },
@@ -277,88 +390,9 @@ export default defineUserConfig({
                 ],
             },
             {
-                text: 'problems',
-                collapsible: true,
-                children: [
-                    {
-                        text: 'vscode',
-                        link: '/problems/vscode',
-                    },
-                ],
-            },
-            {
-                text: 'plugins',
-                collapsible: true,
-                children: [
-                    {
-                        text: '滑动校验',
-                        link: '/plugins/slideVerify',
-                    },
-                ],
-            },
-            {
-                text: 'shortcut',
-                collapsible: true,
-                children: [
-                    {
-                        text: '快捷键',
-                        link: '/shortcut/base.md',
-                    },
-                ],
-            },
-            {
-                text: 'terminal',
-                collapsible: true,
-                children: [
-                    {
-                        text: 'mac',
-                        link: '/terminal/macos',
-                    },
-                    {
-                        text: 'windows',
-                        link: '/terminal/windows',
-                    },
-                    { text: 'pm2', link: '/terminal/pm2' },
-                    { text: 'vim', link: '/terminal/vim' },
-                ],
-            },
-            {
-                text: 'tools',
-                collapsible: true,
-                children: [],
-            },
-            {
                 text: 'vuepress',
                 collapsible: true,
                 children: ['/vuepress/'],
-            },
-            {
-                text: 'vue',
-                collapsible: true,
-                children: [
-                    { text: 'base', link: '/vue/start' },
-                    { text: 'cli', link: '/vue/vuecli.md' },
-                    {
-                        text: 'plugins',
-                        link: '/vue/plugins.md',
-                    },
-                    {
-                        text: 'fileupload',
-                        link: '/vue/fileUpload.md',
-                    },
-                    {
-                        text: '一款基于vue的流程设计器',
-                        link: '/vue/VFD.md',
-                    },
-                    {
-                        text: 'vueRouter',
-                        link: '/vue/vue-router.md',
-                    },
-                    {
-                        text: 'problems',
-                        link: '/vue/problems.md',
-                    },
-                ],
             },
             {
                 text: 'trash',
@@ -366,33 +400,9 @@ export default defineUserConfig({
                 children: ['/trash/'],
             },
             {
-                text: 'webpack',
-                collapsible: true,
-                children: ['/webpack/package'],
-            },
-            {
-                text: '代码转译',
-                collapsible: true,
-                children: [
-                    '/codeTransform/base',
-                    '/codeTransform/babel',
-                    '/codeTransform/esbuild',
-                ],
-            },
-            {
                 text: '电子书籍/文档',
                 collapsible: true,
                 children: ['/booksOrDocuments/base'],
-            },
-            {
-                text: '代码规范',
-                collapsible: true,
-                children: [
-                    '/programStyle/eslint',
-                    '/programStyle/rules',
-                    '/programStyle/mock',
-                    '/programStyle/common',
-                ],
             },
             {
                 text: '函数式编程',
@@ -413,11 +423,6 @@ export default defineUserConfig({
                 text: '工具网址收集',
                 collapsible: true,
                 children: ['/utilsWebAddress/base'],
-            },
-            {
-                text: '认证中心',
-                collapsible: true,
-                children: ['/authCenter/base'],
             },
             {
                 text: '日常工具',
@@ -449,14 +454,6 @@ export default defineUserConfig({
                 collapsible: true,
                 children: ['/toolPackages/base'],
             },
-            {
-                text: '工具软件',
-                collapsible: true,
-                children: [
-                    '/toolSofts/vm',
-                    '/toolSofts/jkins',
-                ],
-            },
         ],
     }),
     base: '/blog/',
@@ -467,21 +464,4 @@ export default defineUserConfig({
             { rel: 'icon', href: '/blog/favicon.ico' },
         ],
     ],
-    // plugins: [pwaPlugin({
-    //     manifest:  {
-    //         "name": "D's Blog",
-    //         "short_name": "HackerWeb",
-    //         "start_url": ".",
-    //         "display": "standalone",
-    //         "background_color": "#fff",
-    //         "description": "A simply readable Hacker News app.",
-    //         "icons": [
-    //           {
-    //             "src": "/blog/favicon.png",
-    //             "sizes": "48x48",
-    //             "type": "image/png"
-    //           }
-    //         ]
-    //     }
-    // })],
 });
