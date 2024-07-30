@@ -92,9 +92,15 @@
 
 
 ```js
-// .npmrc
+// .npmrc淘宝旧版本仓库
 sass_binary_site=https://npm.taobao.org/mirrors/node-sass
 chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
 phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs
 electron_mirror=https://npm.taobao.org/mirrors/electron
+// .npmrc淘宝新版本仓库
+sass_binary_site=https://registry.npmmirror.com/node-sass
+chromedriver_cdnurl=https://registry.npmmirror.com/chromedriver
+phantomjs_cdnurl=https://registry.npmmirror.com/phantomjs
+# electron_mirror=https://registry.npmmirror.com/electron
+disturl=https://registry.npmmirror.com/-/binary/node
 ```

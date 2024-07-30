@@ -338,6 +338,10 @@ export default defineUserConfig({
                         text: '滑动校验',
                         link: 'slideVerify',
                     },
+                    {
+                        text: 'sheetjs',
+                        link: 'sheetjs',
+                    },
                 ],
             },
             {
