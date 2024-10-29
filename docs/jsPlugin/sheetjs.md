@@ -4,7 +4,7 @@
 > 基于xlsx对象
 
 ## ES解析导入文件
-```JS
+```js
 import * as xlsx from 'xlsx';
 /**
  * @param file html原生file对象

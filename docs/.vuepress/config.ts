@@ -142,6 +142,19 @@ export default defineUserConfig({
                         children: ['base', 'tailwind'],
                     },
                     {
+                        text: '跨平台',
+                        prefix: 'crossPlantform',
+                        collapsible: true,
+                        children: [
+                            {
+                                text: 'flutter',
+                                prefix: 'flutter',
+                                collapsible: true,
+                                children: ['base']
+                            }
+                        ],
+                    },
+                    {
                         text: 'html',
                         prefix: 'html',
                         collapsible: true,
