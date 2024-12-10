@@ -14,7 +14,7 @@ tsc --init
 ```
 
 ### 1.1编译上下文
-> 在项目根目录下创建tsconfig.json，ts会默认使用其配置来编译ts文件；     
+> 在项目根目录下创建tsconfig.json，ts会默认使用其配置来编译ts文件；
 - 例如：(指定了tsc要编译的文件以及要忽略的文件)
     ```json
     {
@@ -53,6 +53,67 @@ tsc --init
     //
     declare module XXX {}
     ```
+
+## 2.高阶用法
+### 2.1 `keyof`关键字
+```ts
+interface IProps {
+    name: string;
+    age: number;
+    sex: string;
+}
+// Keys的类型为 'name'|'age'|'sex' 组成的联合类型
+type Keys = keyof IProps;
+// 循环
+// IPropsKey类型为
+// type IPropsKey = {
+//      name: boolean;
+//      age: boolean;
+//      highSchool: boolean;
+//      university: boolean;
+//  }
+type IPropsKey = {[K in keyof IProps]: boolean}
+```
+### 2.2 条件类型
+> 需要注意的是条件类型 `a extends b ? c : d` 仅仅支持在 type 关键字中使用。
+```ts
+type isString<T> = T extends string ? true : false;
+let a: isString<'a'> // a的类型为true
+```
+
+### 2.3 Partial(可选属性)&Required(必选属性)
+```ts
+type optional = Partia<IProps>
+// interface IProps {
+//     name?: string;
+//     age?: number;
+//     sex?: string;
+// }
+```
+
+### 2.4 Pick部分选择
+```ts
+type PickProps = Pick<IProps, 'name'|'age'>
+// type PickProps = {
+//     name: string;
+//     age: number;
+// }
+```
+
+### 2.5 Omit属性忽略
+```ts
+type OmitProps = Omit<IProps, 'name'|'age'>
+// type OmitProps = {
+//     sex: string;
+// }
+```
+
+### 2.6 Readonly只读属性
+
+### 2.7 联合类型&交叉类型
+[link](https://blog.csdn.net/qq_40655561/article/details/135724537)
+- 在使用联合类型的时候，我们只能使用联合类型中所有类型共有的属性和方法以确保类型安全
+
 
 ## 报错相关
 - 在`.vue`文件或者`.jsx`文件中写ts，一旦涉及到泛型，可能会导致解析成`JSX.Element`，[解决方案](https://blog.csdn.net/weixin_44691608/article/details/119518370)

@@ -2,6 +2,6 @@
 :root {
     scroll-behavior: smooth;
     $theme-colors: #2196f3, #f26d6d, #3eaf7c, #fb9b5f;
-
-    // --content-width: 100%;
+    // $content-width: 1800px !default;
+    --content-width: calc(100vw - 600px);
 }

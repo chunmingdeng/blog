@@ -32,6 +32,11 @@ export default defineUserConfig({
                 // 添加选项卡支持
                 tabs: true,
                 demo: true,
+                codetabs: true,
+                imgSize: true,
+                alert: true,
+                hint: true,
+                component: true,
             },
             pwa: {
                 cacheHTML: true,
@@ -55,6 +60,12 @@ export default defineUserConfig({
             { text: '百度', link: 'https://www.baidu.com' },
         ],
         sidebar: [
+            {
+                text: 'work',
+                collapsible: true,
+                prefix: '/work',
+                children: ['base']
+            },
             {
                 text: '3D',
                 collapsible: true,
@@ -150,7 +161,7 @@ export default defineUserConfig({
                                 text: 'flutter',
                                 prefix: 'flutter',
                                 collapsible: true,
-                                children: ['base']
+                                children: ['base', 'dart']
                             }
                         ],
                     },
@@ -269,6 +280,12 @@ export default defineUserConfig({
                         ],
                     },
                 ]
+            },
+            {
+                text: '硬件',
+                collapsible: true,
+                prefix: '/hardware',
+                children: ['base', 'print']
             },
             {
                 text: '数据库',
