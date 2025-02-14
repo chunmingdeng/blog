@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style lang="scss" scoped>
+        .print-wrap {
+            height: calc(100vh - 100px);
+            overflow-y: scroll;
+        }
+        .image-wrap {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 打印预览 -->
+    <div class="print-wrap" id="print">
+        <div class="print-preview">
+            <div class="title">打印小票</div>
+            <div class="divide_line"></div>
+            <!-- ...小票内容html -->
+            <div class="tip">请保存好小票，不要丢弃！</div>
+            <!-- 底下logo二进制文件流，一定要用二进制文件流，保证浏览器打印能够拿到log -->
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+            <div class="cut"></div>
+            <img class="image-wrap" id="img" src="data:image/png;base64,二进制文件流">
+        </div>
+    </div>
+    <!-- 【打印】 -->
+    <button class="default-btn primary-btn" onclick="onPrint()">打印</button>
+
+    <input type="file" onchange="fileupload(this)">
+
+    <script>
+        const imgs = document.getElementsByClassName('image-wrap')
+        function fileupload(e) {
+            console.log(e.files[0])
+            console.log(e||window.event)
+            const fileReader = new FileReader();
+            fileReader.onload = function(e) {
+                console.log('read:', e)
+                console.log('read:', fileReader.result)
+            }
+            fileReader.onloadend = () => {
+                console.log("读取结束")
+                Array.from(imgs).forEach(r => r.src = fileReader.result)
+            }
+            fileReader.readAsDataURL(e.files[0])
+        }
+        function onPrint() {
+            console.log(1111);
+            // 拿到打印页面dom节点
+            const printNode = document.getElementById('print')
+            if (!printNode) return
+            // 页面文档创建一个空的内框架，用于挂载打印节点，并设置一定的样式
+            const newIframe = document.createElement('iframe');
+            newIframe.setAttribute('style', 'width:0px;height:0px;position:absolute;left:-9999px;top:-9999px;');
+            newIframe.setAttribute('align', 'center');
+            document.body.appendChild(newIframe);
+            // 将打印页面设置为内框架内容
+            let doc = null;
+            doc = newIframe.contentWindow.document;
+            doc.write(`
+                    <style type="text/css">
+                    /* 浏览器打印基本样式 */
+                    @media print {
+                        @page {
+                        size: auto;
+                        margin: 1mm; /* 影响打印小票的边缘margin */
+                        table { page-break-after: auto; }
+                        tr    { page-break-inside: avoid; page-break-after: auto; }
+                        td    { page-break-inside: avoid; page-break-after: auto; }
+                        thead { display: table-header-group; }
+                        tfoot { display: table-footer-group; }
+                        }
+                        .cut {
+                            margin-top: 20px;
+                            page-break-after: always;
+                        }
+                    }
+                    .image-wrap { width: 150px}
+                    /* 打印页面样式 */
+                    .print-preview { display: flex; flex-direction: column; color: rgba(51, 51, 51, 1); font-family: Microsoft YaHei, '黑体', STSong, '宋体',Consolas, Monaco, Droid, Sans, Mono, Source, Code, Pro, Menlo, Lucida, Sans, Type, Writer, Ubuntu, Mono; }
+                    .title { display: flex; justify-content: center; font-size: 21px; height: 50px; line-height: 50px; font-weight: bold; }
+                    .divide_line { justify-content: center; border-bottom: 1px dashed rgba(51, 51, 51, 1); }
+                    /* 打印页面样式，一个class一个class写，可以.classA .classB {}, 但不要嵌套，不要.classA { .classB {} } */
+                    </style>
+                    /* 渲染打印页面 */
+                    <div style="width:100%;height:auto;width:320px;margin:0px auto;"align="center">
+                    ${printNode.innerHTML}
+                    </div>`)
+            doc.close();
+            // 浏览器打印页面打开渲染
+            setTimeout(() => {
+                newIframe.contentWindow.focus();
+                newIframe.contentWindow.print();
+                document.body.removeChild(newIframe); // 移除打印内框架，下次打印下次再挂载
+            }, 10);
+        }
+
+    </script>
+</body>
+
+</html>

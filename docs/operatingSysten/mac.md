@@ -13,7 +13,7 @@ location: /usr/local/git
 ### .bash_profile
 location: ~/.bash_profile
 
-### 聚焦快捷搜索不生效问题
+## 聚焦快捷搜索不生效问题
 ```js
 // solution I
 // close application

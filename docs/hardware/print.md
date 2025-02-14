@@ -81,4 +81,8 @@ function callback_deleteDevice(errorCode) {
 
 @tab SDK
 [SDK](/blog/epos-2.27.0.js)
+
+
+@tab window.print 尚佳实践
+[html代码](/blog/打印实践.txt)
 :::
