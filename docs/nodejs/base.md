@@ -16,6 +16,16 @@
 - 当前缀符号为`~`,表示主版本号+次版本号不变，补丁版本号可以升级
 - 当没有前缀符，表示主版本号，次版本号，补丁版本号都不可以升级
 
+## 查找包
+```sh
+# 查看rollup包的信息
+npm info rollup
+# 查看rollup包的所有版本
+npm view rollup versions
+# 查看rollup的最新版本
+npm view rollup version
+```
+
 ## 基础模块
 - `http`
   - `server.createServer()`
