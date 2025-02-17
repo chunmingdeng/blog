@@ -399,6 +399,14 @@ export default defineUserConfig({
                         text: 'http module',
                         link: '/nodejs/http',
                     },
+                    {
+                        text: 'repository',
+                        link: '/nodejs/repository',
+                    },
+                    {
+                        text: 'npm',
+                        link: '/nodejs/npm',
+                    }
                 ],
             },
             {
