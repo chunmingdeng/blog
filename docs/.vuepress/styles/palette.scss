@@ -4,4 +4,31 @@
     $theme-colors: #2196f3, #f26d6d, #3eaf7c, #fb9b5f;
     // $content-width: 1800px !default;
     --content-width: calc(100vw - 600px);
+
+    div[class*=language-] pre code, div[class*=language-].line-numbers-mode .line-numbers {
+        padding-top: 2.5rem!important;
+    }
+
+    body:not(.copy-code-disabled) div[class*=language-]:hover::before {
+        display: block;
+    }
+
+    div[class*='language'] {
+        display: block;
+        &::before {
+            content: ' ';
+            position: absolute;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            background: #fc625d;
+            width: 12px;
+            height: 12px;
+            left: 12px;
+            top: 10px;
+            -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+            box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+            z-index: 2;
+        }
+    }
+
 }
