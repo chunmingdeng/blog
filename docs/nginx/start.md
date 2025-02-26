@@ -10,7 +10,7 @@ mac `brew install nginx`
   http {
     server {
       //当location匹配上且内部没有配置root的时候会使用此选项
-      root ${uri} 
+      root ${uri}
       // 多个location进行匹配，匹配上多个，会代理去location最长的那个
       location ${uri} {
         // opt 配置了此选项，请求会代理到指定的proxy_pass的服务器
@@ -22,11 +22,11 @@ mac `brew install nginx`
         alias ${uri}
         location /images/ {
             root /opt/html/;
-            try_files $uri   $uri/  /images/default.gif; 
+            try_files $uri   $uri/  /images/default.gif;
         }
-        // 比如 请求 127.0.0.1/images/test.gif 会依次查找 
-        // 1.文件/opt/html/images/test.gif   
-        // 2.文件夹 /opt/html/images/test.gif/下的index文件  
+        // 比如 请求 127.0.0.1/images/test.gif 会依次查找
+        // 1.文件/opt/html/images/test.gif
+        // 2.文件夹 /opt/html/images/test.gif/下的index文件
         // 3. 请求127.0.0.1/images/default.gif
       }
     }
@@ -39,3 +39,6 @@ mac `brew install nginx`
 `log_format  main  '$server_addr ; $server_name ; $server_port ; $server_protocol ; $upstream_addr ; $request ; $http_x_forwarded_for $proxy_add_x_forwarded_for';`
 - `$http_x_forwarded_for`
 - `$proxy_add_x_forwarded_for`
+
+## 反向代理
+![alt text](./img/image.png =400x)

@@ -1,0 +1,15 @@
+# SpreadJS
+[产品文档](https://demo.grapecity.com.cn/spreadjs/help/docs/getstarted)
+[API](https://demo.grapecity.com.cn/spreadjs/help/api/modules/GC)
+[官方AI](https://gcdn.grapecity.com.cn/showforum-230-1.html)
+
+::: tabs
+@tab 展示key
+```text
+report.yunzhangfang.com,874734682633748#A0i4mDO6QzM7QzN8IiOiQWSiwSflNHbhZmOiI7ckJye0ICbuFkI1pjIEJCLi4TPRBXezVkaDN7bBBjMWhGbp9GOZhVVWxEblxUSM3kYR5kcwETTHdDcBdzTD5EOrt4NVhDcx54ZsVXNxMDd6NEZkFnWsl5S73GRQpVYtFlVjhkQylXQ5hmI0IyUiwCMxIDMwAjM4MTM0IicfJye&Qf35VfiMjY6cmI0IyQiwiIxEjL6ByUKBCZhVmcwNlI0IiTis7W0ICZyBlIsIyMycjM9ADI7ETMwgTMwIjI0ICdyNkIsISbvNmLn9WYmdmbhhmeuVXeuQncvBXZyJiOiMXbEJCLig1jlzahlDZmpnInmDoimH9pnz9unHZvn/LimDJulHpukzqukfZjlLiOiEmTDJCLigDm5nz
+```
+@tab 设计key
+```text
+Designer-518421149581523#A0tE3MyQDOxUjI0ICZJJCL3VWdyRnOiI7ckJye0ICbuFkI1pjIEJCLi4TPRRDVrgESwd7UKtmcBtCewcmelh7UMNlYmBnM8VERGVTT6ZkcjBDZyZFNStmWkZjczRmRHJDbxNWaNFmbw86T0p6LZdmdJpHUTNXOYtWaxoETVRWQZdlI0IyUiwyM4MzMxUzM6kTM0IicfJye#4Xfd5nIzImNnJiOiMkIsISMx8idgMlSgQWYlJHcTJiOi8kI1tlOiQmcQJCLiYDN6EjMwAiMyITM7EDMyIiOiQncDJCLiAjLw8CMuAzLyVmbnl6clRmI0IyctRkIsICuPWOrFWOkZmeicaOgKaekneOn1eek3e+vIaOk8Wek0SOr0S+lNWuI0ISYONkIsIyMyUTMtU7O
+```
+:::

@@ -21,50 +21,37 @@ export default defineUserConfig({
         // },
         contributors: false,
         plugins: {
-            searchPro: {
-                indexContent: true,
-                autoSuggestions: false,
-                searchDelay: 300,
-                hotKeys: [{ key: 'k', meta: true }],
-            },
+            slimsearch: true,
             copyCode: {},
-            mdEnhance: {
-                // 添加选项卡支持
-                tabs: true,
-                demo: true,
-                codetabs: true,
-                imgSize: true,
-                alert: true,
-                hint: true,
-                component: true,
-            },
             pwa: {
                 cacheHTML: true,
                 maxSize: 1024 * 50, //50M
                 manifest: {
-                    'scope': '/blog/',
-                    'name': "blog",
-                    'start_url': '/blog/',
-                    'display': 'standalone',
-                    'icons': [
+                    scope: '/blog/',
+                    name: 'blog',
+                    start_url: '/blog/',
+                    display: 'standalone',
+                    icons: [
                         {
-                            'src': 'pwa256.png',
-                            'sizes': '256x256',
-                            'type': 'image/png',
+                            src: 'pwa256.png',
+                            sizes: '256x256',
+                            type: 'image/png',
                         },
                     ],
                 },
             },
         },
-        navbar: [
-            { text: '百度', link: 'https://www.baidu.com' },
-        ],
+        navbar: [{ text: '百度', link: 'https://www.baidu.com' }],
         sidebar: [
+            {
+                text: '演示模版',
+                link: 'template',
+            },
             {
                 text: 'work',
                 collapsible: true,
                 prefix: '/work',
-                children: ['base']
+                children: ['base'],
             },
             {
                 text: '3D',
@@ -79,8 +66,8 @@ export default defineUserConfig({
                             {
                                 text: 'base',
                                 link: 'base',
-                                activeMatch: "/d3/base",
-                            }
+                                activeMatch: '/d3/base',
+                            },
                         ],
                     },
                     {
@@ -91,8 +78,8 @@ export default defineUserConfig({
                             {
                                 text: 'base',
                                 link: 'base',
-                                activeMatch: "/webgl/base",
-                            }
+                                activeMatch: '/webgl/base',
+                            },
                         ],
                     },
                     {
@@ -107,6 +94,48 @@ export default defineUserConfig({
                 prefix: 'frontBase',
                 collapsible: true,
                 children: [
+                    {
+                        text: 'angular',
+                        prefix: 'angular',
+                        collapsible: true,
+                        children: ['advance', 'agGrid', 'base', 'component-lib', 'rxjs', 'invoice'],
+                    },
+                    {
+                        text: 'babel',
+                        prefix: 'babel',
+                        collapsible: true,
+                        children: ['base'],
+                    },
+                    {
+                        text: 'browser',
+                        prefix: 'browser',
+                        collapsible: true,
+                        children: ['base', 'chrome'],
+                    },
+                    {
+                        text: 'css',
+                        prefix: 'css',
+                        collapsible: true,
+                        children: ['base', 'tailwind'],
+                    },
+                    {
+                        text: 'es6',
+                        prefix: 'es6',
+                        collapsible: true,
+                        children: ['object'],
+                    },
+                    {
+                        text: 'html',
+                        prefix: 'html',
+                        collapsible: true,
+                        children: ['svg'],
+                    },
+                    {
+                        text: 'IDE工具',
+                        prefix: 'ide',
+                        collapsible: true,
+                        children: ['vscode'],
+                    },
                     {
                         text: 'js系列',
                         prefix: 'jsSeries',
@@ -147,46 +176,20 @@ export default defineUserConfig({
                         ],
                     },
                     {
-                        text: 'css',
-                        prefix: 'css',
-                        collapsible: true,
-                        children: ['base', 'tailwind'],
-                    },
-                    {
-                        text: '跨平台',
-                        prefix: 'crossPlantform',
+                        text: 'terminal',
+                        prefix: 'terminal',
                         collapsible: true,
                         children: [
                             {
-                                text: 'flutter',
-                                prefix: 'flutter',
-                                collapsible: true,
-                                children: ['base', 'dart']
-                            }
-                        ],
-                    },
-                    {
-                        text: 'html',
-                        prefix: 'html',
-                        collapsible: true,
-                        children: ['svg'],
-                    },
-                    {
-                        text: '正则',
-                        prefix: 'reg',
-                        collapsible: true,
-                        children: [
-                            'base',
-                            'utils',
-                        ],
-                    },
-                    {
-                        text: 'angular',
-                        prefix: 'angular',
-                        collapsible: true,
-                        children: [
-                            'base',
-                            'component-lib',
+                                text: 'mac',
+                                link: 'macos',
+                            },
+                            {
+                                text: 'windows',
+                                link: 'windows',
+                            },
+                            { text: 'pm2', link: 'pm2' },
+                            { text: 'vim', link: 'vim' },
                         ],
                     },
                     {
@@ -219,73 +222,43 @@ export default defineUserConfig({
                         ],
                     },
                     {
-                        text: 'browser',
-                        prefix: 'browser',
-                        collapsible: true,
-                        children: [
-                            'base',
-                            'chrome',
-                        ],
-                    },
-                    {
-                        text: 'es6',
-                        prefix: 'es6',
-                        collapsible: true,
-                        children: ['object'],
-                    },
-                    {
                         text: 'webpack',
                         prefix: 'webpack',
                         collapsible: true,
                         children: ['package'],
                     },
                     {
-                        text: 'babel',
-                        prefix: 'babel',
-                        collapsible: true,
-                        children: ['base'],
-                    },
-                    {
-                        text: 'IDE工具',
-                        prefix: 'ide',
-                        collapsible: true,
-                        children: ['vscode'],
-                    },
-                    {
-                        text: 'terminal',
-                        prefix: 'terminal',
+                        text: '跨平台',
+                        prefix: 'crossPlantform',
                         collapsible: true,
                         children: [
                             {
-                                text: 'mac',
-                                link: 'macos',
+                                text: 'flutter',
+                                prefix: 'flutter',
+                                collapsible: true,
+                                children: ['base', 'dart'],
                             },
-                            {
-                                text: 'windows',
-                                link: 'windows',
-                            },
-                            { text: 'pm2', link: 'pm2' },
-                            { text: 'vim', link: 'vim' },
                         ],
+                    },
+                    {
+                        text: '正则',
+                        prefix: 'reg',
+                        collapsible: true,
+                        children: ['base', 'utils'],
                     },
                     {
                         text: '代码规范',
                         prefix: 'programStyle',
                         collapsible: true,
-                        children: [
-                            'eslint',
-                            'rules',
-                            'mock',
-                            'common',
-                        ],
+                        children: ['eslint', 'rules', 'mock', 'common'],
                     },
-                ]
+                ],
             },
             {
                 text: '硬件',
                 collapsible: true,
                 prefix: '/hardware',
-                children: ['base', 'print']
+                children: ['base', 'print'],
             },
             {
                 text: '数据库',
@@ -310,9 +283,7 @@ export default defineUserConfig({
             {
                 text: 'GPGPU',
                 collapsible: true,
-                children: [
-                    { text: 'base', link: '/gpgpu/base' },
-                ],
+                children: [{ text: 'base', link: '/gpgpu/base' }],
             },
             {
                 text: 'git',
@@ -358,11 +329,7 @@ export default defineUserConfig({
                         text: 'pixijs',
                         prefix: 'pixijs',
                         collapsible: true,
-                        children: [
-                            'base',
-                            'methods',
-                            'pixijs',
-                        ],
+                        children: ['base', 'methods', 'pixijs'],
                     },
                     {
                         text: '滑动校验',
@@ -371,6 +338,12 @@ export default defineUserConfig({
                     {
                         text: 'sheetjs',
                         link: 'sheetjs',
+                    },
+                    {
+                        text: 'spreadjs',
+                        prefix: 'spreadjs',
+                        collapsible: true,
+                        children: ['base'],
                     },
                 ],
             },
@@ -406,7 +379,7 @@ export default defineUserConfig({
                     {
                         text: 'npm',
                         link: '/nodejs/npm',
-                    }
+                    },
                 ],
             },
             {
@@ -469,12 +442,7 @@ export default defineUserConfig({
             {
                 text: '日常工具',
                 collapsible: true,
-                children: [
-                    '/dailyTools/base',
-                    '/dailyTools/xmind',
-                    '/dailyTools/jenkins',
-                    '/dailyTools/vm',
-                ],
+                children: ['/dailyTools/base', '/dailyTools/xmind', '/dailyTools/jenkins', '/dailyTools/vm'],
             },
             {
                 text: '数学',
@@ -497,13 +465,20 @@ export default defineUserConfig({
                 children: ['/toolPackages/base'],
             },
         ],
+        markdown: {
+            math: {
+                type: 'katex',
+            },
+            codeTabs: true,
+            demo: true,
+            tabs: true,
+            imgSize: true,
+            alert: true,
+            hint: true,
+            component: true,
+        },
     }),
     base: '/blog/',
     // href需要带上base
-    head: [
-        [
-            'link',
-            { rel: 'icon', href: '/blog/favicon.ico' },
-        ],
-    ],
+    head: [['link', { rel: 'icon', href: '/blog/favicon.ico' }]],
 });

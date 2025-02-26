@@ -51,3 +51,74 @@ APP_INITIALIZER 会被调用两次
 
 
 - 由于一旦将Router包含在APP_INITIALIZER工厂的依赖项中，您会遇到循环依赖关系问题。详见：https://github.com/angular/angular/blob/4c2ce4e8ba4c5ac5ce8754d67bc6603eaad4564a/packages/router/src/router_module.ts#L61-L64。
+
+## 内容映射（插槽）
+> [link](http://localhost:6002/guide/content-projection)
+:::tabs
+@tab 默认插槽
+```html
+<!-- parnet -->
+<child-component>
+    <ng-template></ng-template>
+</child-component>
+
+<!-- child-component -->
+<div>
+    <ng-content></ng-content>
+</div>
+```
+@tab 具名插槽
+```html
+<!-- parnet -->
+<child-component>
+    <div class="child-content">slot content</div>
+</child-component>
+
+<!-- child-component -->
+<div>
+    <ng-content select='.child-content'></ng-content>
+</div>
+```
+
+@tab ng-template插槽
+```js
+@Directive({
+  selector: '[appExampleZippyContent]'
+})
+export class ZippyContentDirective {
+  constructor(public templateRef: TemplateRef<unknown>) {}
+}
+```
+
+```html
+<!-- parnet -->
+<child-component>
+    <ng-template appExampleZippyContent>
+    It depends on what you do with it.
+    </ng-template>
+</child-component>
+
+<!-- child-component -->
+<div>
+    <ng-container [ngTemplateOutlet]="cont.templateRef"></ng-container>
+</div>
+```
+
+```js
+// child-component.ts
+@ContentChild(ZippyContentDirective) cont!: ZippyContentDirective;
+@ContentChild(ZippyContentDirective) cont!: QueryList<ZippyContentDirective>;
+```
+:::
+
+## 框架升级
+[官方升级地址](https://update.angular.io)
+[辅助问题地址](https://zhuanlan.zhihu.com/p/691405325)
+
+:::warning
+`ng update @angular/core@8 @angular/cli@8`<br>
+但很有可能你会得到下面这样的结果：<br>
+`Error: Repository is not clean.  Please commit or stash any changes before updating.`<br>
+没关系，这个基本不影响你的升级，我们只需要加上`--allow-dirty`就可以了:<br>
+`ng update @angular/core@8 @angular/cli@8 --allow-dirty`
+:::

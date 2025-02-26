@@ -4,6 +4,7 @@
 1. 快速实现数字千分位
     ```js
     '123456789'.replace(/\B(?=((\d{3})*)(?!\d))/g, ',')
+    '123456789'.replace(/\B(?=((\d{3})*)$/g, ',')
     ```
     涉及到的知识点：
     - \B:单词边界
@@ -27,27 +28,25 @@
     - 将颜色转换为匹配的颜色正则（#16|rgba|rgb）
     ```ts
     export function getVariablesReg(colors: string[]) {
-    return new RegExp(
-        colors.map(i => `(${i
-                            .replace(/\s/g, ' ?')
-                            .replace(/\(/g, '\\(')
-                            .replace(/\)/g, '\\)')
-                            .replace(/0?\./, '0?\\.')
-                            })`
-                )
-                .join('|')
-    )
+        return new RegExp(
+            colors.map(i => `(${i
+                                .replace(/\s/g, ' ?')
+                                .replace(/\(/g, '\\(')
+                                .replace(/\)/g, '\\)')
+                                .replace(/0?\./, '0?\\.')
+                                })`).join('|')
+        )
     }
     ```
 
     - 将颜色正则和基础正则组合，合并成css正则
     ```ts
     function combineReg(decorator = '', joinString = '', ...args) {
-    const regString = args.map(e => {
-        const strn = e.toString();
-        return `(${str.slice(1, str.length - 1)})`
-    }).join(joinString)
-    return new RegExp(regString, decorator);
+        const regString = args.map(e => {
+            const strn = e.toString();
+            return `(${str.slice(1, str.length - 1)})`
+        }).join(joinString)
+        return new RegExp(regString, decorator);
     }
 
     const CSS_REG = /[^}]*\{[^{]*\}/g;
