@@ -1,6 +1,6 @@
 # rxjs
 
-## 常见用法
+## 1. 常见用法
 
 ### concat
 
@@ -67,3 +67,42 @@ result.subscribe(x => console.log('result:', x));
 ```
 
 ![alt text](./imgs/image.png)
+
+## 2. 模拟请求写法标准化
+
+```typescript
+search$ = new BehaviorSubject(null);
+
+// 固定调用业务无关，无需更改
+ngOnInit() {
+    this.search$
+        .pipe(
+            switchMap(() => {
+                this.table.loading = true;
+                return this.__getTableData().pipe(
+                    finalize(() => (this.table.loading = false)),
+                    filterSuccessResponse()
+                );
+            })
+        )
+        .subscribe(res => {
+            const {data, total} = res as any;
+            this.table.data = data;
+            this.pg.total = total;
+        });
+}
+
+// 请求对接业务相关，后续替换成真实请求即可（模拟请求过程）
+__getTableData() {
+    // ======TODO req======
+    return new Observable(sub => {
+        sub.next({
+            data: Array(12).fill({ updateTime: '2025-04-23 10:23:12' }),
+            total: 12,
+            code: '0',
+        });
+        sub.complete();
+    }).pipe(delay(2000));
+}
+```
+

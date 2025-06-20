@@ -99,6 +99,7 @@ npm view rollup version
 ## 疑难问题
 > - node命令执行，提示证书过期，执行`npm cache clean --force`, `npm config set strict-ssl false` [link](https://blog.csdn.net/h__913246828/article/details/136362415)
 > - node-sass, 要选择和当前node版本符合的版本 `npm install node-sass@^4.14.0 --registry=https://registry.npm.taobao.org --sass_binary_site=https://npm.taobao.org/mirrors/node-sass/` [link](https://blog.csdn.net/kingslave1/article/details/130526329)
+> - 首先要知道的是，安装 node-sass 时在 node scripts/install.js 这个阶段会从 github.com 上下载一个 .node 文件，大部分安装不成功的原因都源自这里，因为 GitHub Releases 里的文件都托管在 s3.amazonaws.com 上面，而这个网址在国内总是"网络不稳定"，所以我们需要通过第三方服务器下载这个文件。 `npm set sass_binary_site http://cdn.npm.taobao.org/dist/node-sass` [link](https://www.cnblogs.com/houxianzhou/p/18204476)
 
 
 ```js
