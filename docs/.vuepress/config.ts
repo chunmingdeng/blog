@@ -199,6 +199,7 @@ export default defineUserConfig({
                         children: [
                             { text: 'base', link: 'start' },
                             { text: 'cli', link: 'vuecli.md' },
+                            { text: 'debug', link: 'debug.md' },
                             {
                                 text: 'plugins',
                                 link: 'plugins.md',

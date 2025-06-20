@@ -1,7 +1,7 @@
 ### version
-> 版本相关的内容  
+> 版本相关的内容
 
-|version|cmd|
+|version|cmd|-|
 |---|---|---|
 |2.*|`npm install vue`|vue1版本|
 |3.*|`npm install -g @vue/cli`|vue2版本|
@@ -13,16 +13,16 @@
 |-|-|
 |vue init webpack <project_name>|初始化项目|
 
-## 3.* 
+## 3.*
 > 踩坑相关文章  [link](https://segmentfault.com/a/1190000016423943)
 
 ## 4.*
 创建工程的命令和3版本相同
 cli4版本安装less[相关文章](https://blog.csdn.net/qq_45704048/article/details/116609159)
-  - vue add style-resources-loader  
+  - vue add style-resources-loader
   - 选择css预编译语言
   - npm install less less-loader --save-dev
-#### 启动GUI界面 
+#### 启动GUI界面
 ```js
 // 查询vue版本
 vue --version

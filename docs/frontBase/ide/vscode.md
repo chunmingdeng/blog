@@ -4,6 +4,394 @@
 
 > macos 更新最新的系统后，系统下的 python 在/usr/local/bin/python，系统下的 python3 在/usr/bin/python3，而 code 的可执行文件的内容中有这么一段：`function realpath() { /usr/bin/python -c "import os,sys; print(os.path.realpath(sys.argv[1]))"`，其中`/usr/bin/python`在新系统下已经不存在了，需要改为`/usr/local/bin/python`，然后 code 命令就可以正常使用了
 
+## 前端调试（vs启动，在vscode中打断点）
+>[微软vscode官方文档地址](https://code.visualstudio.com/docs/nodejs/browser-debugging#_open-link-command)
+1. open link command 无需任何配置，直接启动调试
+2. launch.json + f5 需要配置launch.json文件，然后f5启动调试
+3. 通过 `/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222 --user-data-dir=remote-debug-profile`启动浏览器
+输入调试地址调试, 没有`--user-data-dir`选项，貌似无法连接9222调试端口
+
+
+## 自定义 keybindings&snippets&userSetting
+:::tabs
+@tab keybindings.json
+```json
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "ctrl+[Backquote]",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "cmd+g",
+        "command": "workbench.action.gotoLine"
+    },
+    {
+        "key": "ctrl+g",
+        "command": "-workbench.action.gotoLine"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "-editor.action.previousMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "-workbench.action.terminal.findPrevious",
+        "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "-workbench.action.terminal.openDetectedLink",
+        "when": "accessibleViewIsShown && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal'"
+    },
+    {
+        "key": "shift+cmd+g",
+        "command": "workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "ctrl+shift+g",
+        "command": "-workbench.view.scm",
+        "when": "workbench.scm.active"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-workbench.action.chat.startVoiceChat",
+        "when": "hasChatProvider && hasSpeechProvider && inChatInput && !chatSessionRequestInProgress && !editorFocus && !inlineChatHasActiveRequest && !inlineVoiceChatInProgress && !quickVoiceChatInProgress && !voiceChatGettingReady && !voiceChatInEditorInProgress && !voiceChatInViewInProgress || hasChatProvider && hasSpeechProvider && inlineChatFocused && !chatSessionRequestInProgress && !editorFocus && !inlineChatHasActiveRequest && !inlineVoiceChatInProgress && !quickVoiceChatInProgress && !voiceChatGettingReady && !voiceChatInEditorInProgress && !voiceChatInViewInProgress"
+    },
+    {
+        "key": "cmd+g",
+        "command": "-editor.action.nextMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "shift+cmd+0",
+        "command": "git.checkout",
+        "when": "!operationInProgress"
+    },
+    {
+        "key": "shift+cmd+w",
+        "command": "-workbench.action.closeWindow"
+    },
+    {
+        "key": "shift+cmd+b",
+        "command": "workbench.action.tasks.runTask"
+    },
+    {
+        "key": "cmd+j",
+        "command": "-workbench.action.togglePanel"
+    },
+    {
+        "key": "cmd+j",
+        "command": "editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "workbench.action.zoomOut"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+-",
+        "command": "-workbench.action.zoomOut"
+    },
+    {
+        "key": "cmd+-",
+        "command": "workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "ctrl+-",
+        "command": "-workbench.action.navigateBack",
+        "when": "canNavigateBack"
+    },
+    {
+        "key": "shift+cmd+-",
+        "command": "workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+shift+-",
+        "command": "-workbench.action.navigateForward",
+        "when": "canNavigateForward"
+    },
+    {
+        "key": "ctrl+=",
+        "command": "workbench.action.zoomIn"
+    },
+    {
+        "key": "cmd+=",
+        "command": "-workbench.action.zoomIn"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.togglePanel"
+    },
+    {
+        "key": "shift+cmd+/",
+        "command": "-workbench.action.chat.attachTools",
+        "when": "inChatInput && chatMode == 'agent'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-workbench.action.chat.startVoiceChat",
+        "when": "chatIsEnabled && hasSpeechProvider && inChatInput && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress || chatIsEnabled && hasSpeechProvider && inlineChatFocused && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-workbench.action.chat.stopListeningAndSubmit",
+        "when": "inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'editor' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'inline' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'quick' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'view' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'editor' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'inline' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'quick' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'view'"
+    },
+    {
+        "key": "ctrl+cmd+i",
+        "command": "-workbench.action.chat.open",
+        "when": "!chatSetupHidden"
+    },
+    {
+        "key": "shift+cmd+i",
+        "command": "-workbench.action.chat.openEditSession",
+        "when": "chatEditingParticipantRegistered && !chatSetupHidden && view != 'workbench.panel.chat.view.edits'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-inlineChat.start",
+        "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
+    },
+    {
+        "key": "cmd+k i",
+        "command": "-inlineChat.startWithCurrentLine",
+        "when": "inlineChatHasProvider && !editorReadonly && !inlineChatVisible"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-inlineChat.startWithCurrentLine",
+        "when": "inlineChatHasProvider && inlineChatShowingHint && !editorReadonly && !inlineChatVisible"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-workbench.action.terminal.chat.start",
+        "when": "chatIsEnabled && terminalChatAgentRegistered && terminalFocusInAny && terminalHasBeenCreated || chatIsEnabled && terminalChatAgentRegistered && terminalFocusInAny && terminalProcessSupported"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-inlineChat2.reveal",
+        "when": "inlineChatHasEditsAgent && !chatEdits.isGlobalEditingSession && chatEdits.requestCount >= 1"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-inlineChat2.stop",
+        "when": "inlineChatHasEditsAgent && inlineChatVisible && chatEdits.requestCount == '0'"
+    },
+    {
+        "key": "cmd+i",
+        "command": "-search.action.searchWithAI",
+        "when": "hasAIResultProviderKey && searchViewletFocus"
+    },
+    {
+        "key": "ctrl+shift+\\",
+        "command": "workbench.action.terminal.focusTabs",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+    },
+    {
+        "key": "shift+cmd+\\",
+        "command": "-workbench.action.terminal.focusTabs",
+        "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported || terminalHasBeenCreated && terminalTabsFocus || terminalProcessSupported && terminalTabsFocus"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "-tongyi.show.panel.chat",
+        "when": "TongyiLingMa.Chat.active"
+    }
+]
+
+```
+
+@tab userSetting.json
+```json
+{
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[less]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmDelete": false,
+  "[markdown]": {
+    "editor.quickSuggestions": {
+      "other": "on",
+      "comments": "off",
+      "strings": "off"
+    }
+  },
+  "hediet.vscode-drawio.resizeImages": null,
+  "workbench.editor.tabCloseButton": "left",
+  "hediet.vscode-drawio.colorNames": {},
+  "hediet.vscode-drawio.theme": "atlas",
+  "editor.unicodeHighlight.invisibleCharacters": false,
+  "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
+    "*.pdf": "pdf.view",
+    "{git,gitlens,git-graph}:/**/*.{md,csv,svg}": "default"
+  },
+  "files.associations": {
+    "*.pdf": "pdf"
+  },
+  "leetcode.endpoint": "leetcode-cn",
+  "[vue]": {
+    "editor.defaultFormatter": "Vue.volar"
+  },
+  "markdown-preview-enhanced.enablePreviewZenMode": true,
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.env.osx": {},
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.cursorBlinking": "smooth",
+  "diffEditor.codeLens": true,
+  "diffEditor.experimental.showEmptyDecorations": false,
+  "files.trimTrailingWhitespace": true,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.editor.enablePreview": false,
+  "workbench.experimental.share.enabled": true,
+  "vetur.completion.scaffoldSnippetSources": {
+    "workspace": "💼",
+    "user": "🗒️",
+    "vetur": "✌"
+  },
+  "files.autoSaveDelay": 2000,
+  "vetur.validation.template": false,
+  "vetur.format.options.tabSize": 4,
+  "dart.flutterSdkPath": "/Users/chunmingdeng/fvm/default",
+  "workbench.tips.enabled": false,
+  "workbench.editor.tabActionLocation": "left",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "markdown-preview-enhanced.markdownFileExtensions": [
+    ".md",
+    ".markdown",
+    ".mdown",
+    ".mkdn",
+    ".mkd",
+    ".rmd",
+    ".qmd"
+  ],
+  "markdown-preview-enhanced.revealjsTheme": "none.css",
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "dart.flutterCustomEmulators": [],
+  "dart.sdkPath": null,
+  "dart.lineLength": 180,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.renderWhitespace": "all",
+  "cursorcode.prompt": "gpgpu中的pingpong原理",
+  "Lingma.methodQuickOperation": false,
+  "Lingma.localMachineModel": false,
+  "Lingma.cloudModelEnable": false,
+  "editor.formatOnSaveMode": "modifications",
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.closingLabelsPrefix": " <>",
+  "dart.customFlutterDapPath": null,
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "typescript.tsserver.log": "verbose",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "markdown-preview-enhanced.mermaidTheme": "forest",
+  "markdown-preview-enhanced.previewTheme": "vue.css",
+  "markdown-preview-enhanced.codeBlockTheme": "vue.css",
+  "prettier.arrowParens": "avoid",
+  "prettier.jsxSingleQuote": true,
+  "prettier.bracketSameLine": true,
+  "prettier.tabWidth": 4,
+  "prettier.singleQuote": true,
+  "prettier.useEditorConfig": false,
+  "prettier.singleAttributePerLine": true,
+  "prettier.printWidth": 160,
+  "prettier.enableDebugLogs": true,
+  "editor.fontFamily": "'Monaspace xenon frozen', Menlo, Monaco, 'Courier New', monospace, '楷体-简'",
+  "prettier.htmlWhitespaceSensitivity": "ignore",
+  "editor.tokenColorCustomizations": {
+    "comments": "#08df1d"
+  },
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.size": "fit",
+  "Lingma.DisplayLanguage": "简体中文",
+  "Lingma.PreferredLanguage for AI Chat": "简体中文",
+  "Lingma.PreferredLanguage forCommitMessage": "简体中文",
+  "chat.commandCenter.enabled": false,
+  "workbench.navigationControl.enabled": false,
+  "window.commandCenter": false,
+  "window.customTitleBarVisibility": "windowed",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.selectionHighlight": false,
+  "editor.copyWithSyntaxHighlighting": false,
+  "editor.linkedEditing": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true
+}
+```
+
+@tab snippets
+```json
+{
+	"Print console with color": {
+		"prefix": "clog",
+		"scope": "javascript,typescript,vue",
+		"body": [
+			"console.log('%c $1:', 'color: green', $2);",
+		],
+	},
+
+	"function commnet": {
+		"prefix": "**",
+		"scope": "javascript,typescript",
+		"body": [
+			"/** @desc $1 */",
+		],
+	},
+
+	"todo commnet": {
+		"prefix": "tt",
+		"scope": "javascript,typescript",
+		"body": [
+			"// ======TODO $1======",
+		],
+	},
+
+
+	"markdown 折叠代码块模版": {
+        "prefix": "details",
+		"scope": "markdown",
+        "body": [
+            "<details>\r\n\t<summary>$1</summary>\r\n\r\n```json\r\n```\r\n</details>",
+            "$2"
+        ],
+        "description": "Log output to console"
+    }
+}
+```
+
+:::
+
 ## 基础插件
 
 1. Markdown Preview Enhanced
@@ -22,8 +410,9 @@
 13. dotenv
 14. geo data viewer
 
-### Markdown Preview Enhanced
 
+## markdown config
+### 自定义markdown样式预览
 :::tabs
 @tab 设置
 
@@ -706,11 +1095,6 @@ pre code::-webkit-scrollbar-thumb {
 ```
 
 :::
-
-## markdown config
-
----
-
 ### markdown 代码快捷提示
 
 1. ctrl+shfit+p 打开 setting 的 json 配置新增
@@ -724,18 +1108,7 @@ pre code::-webkit-scrollbar-thumb {
             }
         },
     ```
-2. ctrl+shift+p 输入`User snippets`，选择`markdown`类型文件，这时候 vscode 会创建或者打开一个`markdown.json`配置文件
-3. 根据文件提示在文件中创建对应的模版
-    ````json
-        "markdown 折叠代码块模版": {
-            "prefix": "details",
-            "body": [
-                "<details>\r\n\t<summary>$1</summary>\r\n\r\n```json\r\n```\r\n</details>",
-                "$2"
-            ],
-            "description": "Log output to console"
-        }
-    ````
+
 
 ## vscode shortcut
 
@@ -783,7 +1156,6 @@ pre code::-webkit-scrollbar-thumb {
 }
 ```
 
-## 自定义
 
 ### 字体
 [开源免费字体下载地址](https://www.programmingfonts.org)

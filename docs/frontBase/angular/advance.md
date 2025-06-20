@@ -130,3 +130,18 @@ export class CusCheckboxComponent implements ControlValueAccessor, OnChanges {
     }
 }
 ```
+
+### 自定义组件并自定义绑定值的返回value&valueChange
+```html
+<yzf-digital-specific-addition-info
+    [(value)]="invoiceData.invoicePreSpecialIndustryDto"></yzf-digital-specific-addition-info>
+```
+```js
+// 定义属性绑定值
+@Input() value = null;
+// 定义属性帮地址的返回emmiter
+@Output() valueChange = new EventEmitter();
+// 通过emmiter将至返回并绑定至原属性
+this.valueChange.emit(_this.getValidInfo());
+```
+***有可能name&[name]Change这种成对的形式可以完成值的绑定关系***
