@@ -3,6 +3,7 @@ import { viteBundler } from '@vuepress/bundler-vite';
 // import { searchProPlugin } from 'vuepress-plugin-search-pro';
 import { hopeTheme } from 'vuepress-theme-hope';
 import { pwaPlugin } from '@vuepress/plugin-pwa';
+import { shikiPlugin } from '@vuepress/plugin-shiki';
 
 export default defineUserConfig({
     port: 6003,
@@ -477,9 +478,16 @@ export default defineUserConfig({
             alert: true,
             hint: true,
             component: true,
+            highlighter: {
+                type: 'shiki', // or "prismjs"
+
+                // shiki 或 prismjs 选项
+                // ...
+            },
         },
     }),
     base: '/blog/',
     // href需要带上base
     head: [['link', { rel: 'icon', href: '/blog/favicon.ico' }]],
+    plugins: [shikiPlugin({ collapsedLines: true, theme: 'material-theme-lighter', notationFocus: true })],
 });

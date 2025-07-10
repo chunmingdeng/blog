@@ -188,6 +188,9 @@ server.listen(3000, () => console.log('server listen at port 3000'))
 ## interactjs [doc](https://interactjs.io/docs/)
 > 一个前端交互事件包，帮助实现复杂的交互操作，拖拽，点击，放置等
 
+## yo [link](https://www.npmjs.com/package/yo)
+> yo 是一个用于创建项目基础结构的工具，它属于 Yeoman 项目的一部分。Yeoman 提供了一套系统，帮助开发者快速构建现代化的 JavaScript 应用程序。
+
 
 
 

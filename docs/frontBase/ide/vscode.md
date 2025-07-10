@@ -1,10 +1,10 @@
 # vscode
 
-## 关于 code 命令
+## 1.关于 code 命令
 
 > macos 更新最新的系统后，系统下的 python 在/usr/local/bin/python，系统下的 python3 在/usr/bin/python3，而 code 的可执行文件的内容中有这么一段：`function realpath() { /usr/bin/python -c "import os,sys; print(os.path.realpath(sys.argv[1]))"`，其中`/usr/bin/python`在新系统下已经不存在了，需要改为`/usr/local/bin/python`，然后 code 命令就可以正常使用了
 
-## 前端调试（vs启动，在vscode中打断点）
+## 2.前端调试（vs启动，在vscode中打断点）
 >[微软vscode官方文档地址](https://code.visualstudio.com/docs/nodejs/browser-debugging#_open-link-command)
 1. open link command 无需任何配置，直接启动调试
 2. launch.json + f5 需要配置launch.json文件，然后f5启动调试
@@ -12,15 +12,15 @@
 输入调试地址调试, 没有`--user-data-dir`选项，貌似无法连接9222调试端口
 
 
-## 自定义 keybindings&snippets&userSetting
+## 3.自定义 keybindings&snippets&userSetting
 :::tabs
 @tab keybindings.json
-```json
+```json :collapsed-lines=15
 // Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "ctrl+[Backquote]",
-        "command": "workbench.action.terminal.toggleTerminal"
+        "command": "workbench.action.terminal.toggleTerminal" //[!code focus]
     },
     {
         "key": "cmd+g",
@@ -392,26 +392,27 @@
 
 :::
 
-## 基础插件
+## 4.基础插件
+```text
+Markdown Preview Enhanced
+volar
+vue-vscode-snippets
+git history·
+glsl lint
+json
+live server
+<!-- 8. markdowwn all in one -->
+remote ssh
+shader languages support for vscode
+ tailwind css intellisense
+ volar
+ vue vscode snippets
+ dotenv
+ geo data viewer
+```
 
-1. Markdown Preview Enhanced
-2. volar
-3. vue-vscode-snippets
-4. git history·
-5. glsl lint
-6. json
-7. live server
- <!-- 8. markdowwn all in one -->
-8. remote ssh
-9. shader languages support for vscode
-10. tailwind css intellisense
-11. volar
-12. vue vscode snippets
-13. dotenv
-14. geo data viewer
 
-
-## markdown config
+## 5.markdown config
 ### 自定义markdown样式预览
 :::tabs
 @tab 设置
@@ -1110,7 +1111,7 @@ pre code::-webkit-scrollbar-thumb {
     ```
 
 
-## vscode shortcut
+## 6.vscode shortcut
 
 | key                            | desc                                     | key | desc |
 | ------------------------------ | ---------------------------------------- | --- | ---- |
@@ -1138,7 +1139,7 @@ pre code::-webkit-scrollbar-thumb {
 | ctrl+shift+alt+箭头            | 列框选择                                 |
 | ctrl+shift+alt+pageup/pagedown | 页面列框选择                             |
 
-## prettier config
+## 7.prettier config
 
 ```json
 {
@@ -1251,3 +1252,23 @@ vscode setting `font family` 设置优先字体
     },
     // 编辑器样式自定义设置====end====
 ```
+
+## 8.vscode插件开发
+> [官方案例](https://github.com/microsoft/vscode-extension-samples)
+1. 选择以空目录，切换node版本至20+，`npm install yo generator-code @vscode/vsce -g`
+2. `yo code` 创建插件(类似于vue-cli创建项目)
+3. 这时候vscode会提示要安装一些相关插件，同意即可（或者手动安装eslint、esbuild problem matcher、extension test runner）
+4. f5启动项目，这时候vscode会启动一个新的vscode用于调试当前开发的插件
+5. 打包插件.vsix包；项目根目录下执行`vsce package`
+```json
+// package.json
+"contributes": {
+    "commands": [
+        {
+        "command": "plugin01.helloWorld",
+        "title": "testzhiling" //自定义命令， cmd+shfit+p 输入testzhiling即可执行插件的指令
+        }
+    ]
+}
+```
+<Badge text="tip" type="tip" vertical="middle" />
