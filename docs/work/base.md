@@ -1,5 +1,24 @@
 # work
 
+## cnpm
+1. 地址
+    a. [registry地址](http://172.23.40.188:7001/)
+    b. [管理地址](http://172.23.40.188:7002/)
+2. node版本使用12，高版本可能登录失败
+3. 仓库下新建.npmrc文件
+    ```ts
+    registry=http://172.23.40.188:7001/
+    ```
+4. 登录
+    ```shell
+    npm login
+    # 用户名&密码都是admin
+    ```
+5. 发布需要在package.json中添加如下内容
+    ```json
+    "maintainers": ["admin"],
+    ```
+
 ## kuboard
 
 ::: tabs

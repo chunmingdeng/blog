@@ -371,8 +371,12 @@ export default defineUserConfig({
                     },
                     { text: 'koa', link: '/nodejs/koa' },
                     {
-                        text: 'http module',
+                        text: 'http',
                         link: '/nodejs/http',
+                    },
+                    {
+                        text: 'https',
+                        link: '/nodejs/https',
                     },
                     {
                         text: 'repository',

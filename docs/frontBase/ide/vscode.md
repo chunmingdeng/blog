@@ -17,10 +17,11 @@
 @tab keybindings.json
 ```json :collapsed-lines=15
 // Place your key bindings in this file to override the defaultsauto[]
+// Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "ctrl+[Backquote]",
-        "command": "workbench.action.terminal.toggleTerminal" //[!code focus]
+        "command": "workbench.action.terminal.toggleTerminal"
     },
     {
         "key": "cmd+g",
@@ -210,9 +211,34 @@
         "key": "shift+cmd+l",
         "command": "-tongyi.show.panel.chat",
         "when": "TongyiLingMa.Chat.active"
-    }
-]
+    },
+    {
+        "key": "cmd+h",
+        "command": "gitlens.openFileHistory"
+    },
+    { "key": "ctrl+0", "command": "workbench.action.focusSideBar" },
+    { "key": "ctrl+1", "command": "workbench.action.focusFirstEditorGroup" },
+    { "key": "ctrl+2", "command": "workbench.action.focusSecondEditorGroup" },
+    { "key": "ctrl+3", "command": "workbench.action.focusThirdEditorGroup" },
+    { "key": "ctrl+4", "command": "workbench.action.focusFourthEditorGroup" },
+    { "key": "ctrl+5", "command": "workbench.action.focusFifthEditorGroup" },
+    { "key": "ctrl+6", "command": "workbench.action.focusSixthEditorGroup" },
+    { "key": "ctrl+7", "command": "workbench.action.focusSeventhEditorGroup" },
+    { "key": "ctrl+8", "command": "workbench.action.focusEighthEditorGroup" },
+    { "key": "ctrl+9", "command": "workbench.action.lastEditorInGroup" },
 
+    { "key": "cmd+0", "command": "workbench.action.lastEditorInGroup" },
+    { "key": "cmd+1", "command": "workbench.action.openEditorAtIndex1" },
+    { "key": "cmd+1", "command": "workbench.action.openEditorAtIndex1" },
+    { "key": "cmd+2", "command": "workbench.action.openEditorAtIndex2" },
+    { "key": "cmd+3", "command": "workbench.action.openEditorAtIndex3" },
+    { "key": "cmd+4", "command": "workbench.action.openEditorAtIndex4" },
+    { "key": "cmd+5", "command": "workbench.action.openEditorAtIndex5" },
+    { "key": "cmd+6", "command": "workbench.action.openEditorAtIndex6" },
+    { "key": "cmd+7", "command": "workbench.action.openEditorAtIndex7" },
+    { "key": "cmd+8", "command": "workbench.action.openEditorAtIndex8" },
+    { "key": "cmd+9", "command": "workbench.action.openEditorAtIndex9" }
+]
 ```
 
 @tab userSetting.json
@@ -409,6 +435,7 @@ shader languages support for vscode
  vue vscode snippets
  dotenv
  geo data viewer
+ Prettify TypeScript: Better Type Previews (一个格式化ts递归可看具体属性的插件)
 ```
 
 

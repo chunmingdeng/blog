@@ -97,7 +97,11 @@ __getTableData() {
     // ======TODO req======
     return new Observable(sub => {
         sub.next({
-            data: Array(12).fill({ updateTime: '2025-04-23 10:23:12' }),
+            data: {
+                result: {
+                    data: Array(12).fill({ updateTime: '2025-04-23 10:23:12' })
+                },
+            }
             total: 12,
             code: '0',
         });
@@ -105,4 +109,3 @@ __getTableData() {
     }).pipe(delay(2000));
 }
 ```
-

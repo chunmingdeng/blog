@@ -12,25 +12,26 @@
 1. 移除项目中`"ng-packagr": "10.0.0"`，暂时不考虑打包问题；ng-packagr 10版本依赖高版本的angular基础框架（不清楚8版本为什么会使用v10）
 2. 执行`set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@8 update @angular/cli@8 @angular/core@8 --allow-dirty`
     > 执行可能失败，如果是报nodejs执行失败和`matchs`函数相关，是node版本导致，更改node版本到v12
-3. 执行`cmd /C "set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@9 update @angular/cli@9 @angular/core@9"`
+3. 执行`set "NG_DISABLE_VERSION_CHECK=1" && npx @angular/cli@9 update @angular/cli@9 @angular/core@9`
     > 执行失败：`"tslib": "~2.5.0"`和项目框架使用`angular@9`版本冲突，`angular@9`依赖`^1.10.0`，暂时移除`tslib`
     > answer：重新安装`npm install tslib@^1.10.0`
 
-    > @angular-devkit/schematics找不到1
+    > @angular-devkit/schematics找不到
     > answer: `npm install @angular-devkit/schematics@^8`
 
-    > 找不到@angular/cli
+    > ###### 找不到@angular/cli
+    >
     > `npm install @angular/cli@~8.3.29 -g`
-
+    
     > 提示最低需要nodejs v18版本，原因：@angular/cli@~8.3.29是2020年的版本
     > 安装nodejs v18版本，`npm install -g @angular/cli@~8.3.29`
-
+    
     > 执行失败，提示找不到`@angular/cli`
     > 项目下执行`npm install`
-
+    
     > 执行失败，提示找不到`tsconfig`文件
     > 项目下有个`projects/ng-yzf-base`项目下没有`tsconfig`文件，随便建一个
-
+    
 4. 升级普通依赖包
     > @angular/cdk@^9
     > @ant-design/icons-angular@^9
