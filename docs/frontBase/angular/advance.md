@@ -70,13 +70,13 @@
     /**
      * @description 对formControl进行校验，对formGroup的嵌套进行处理
      */
-    formControlValid(item) {
+    export const formControlValid = function(item) {
         if (item instanceof FormGroup) {
             Object.values(item.controls).forEach((e) =>
-                this.formControlValid(e)
+                formControlValid(e)
             );
         } else if(item instanceof FormArray) {
-            item.controls.forEach(e => this.formControlValid(e))
+            item.controls.forEach(e => formControlValid(e))
         } else if (item instanceof FormControl) {
             if (item.invalid) {
                 item.markAsDirty();

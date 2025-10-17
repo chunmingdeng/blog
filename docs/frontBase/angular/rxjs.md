@@ -65,8 +65,106 @@ const result = timer(0, 1000).pipe(
 );
 result.subscribe(x => console.log('result:', x));
 ```
-
 ![alt text](./imgs/image.png)
+
+### timer + exhaustMap + switchMap 模拟轮询请求
+```js
+this.search$
+    .pipe(
+        debounceTime(200),
+        switchMap(isFirst => {
+            return timer(0, 4000).pipe(
+                exhaustMap(r => {
+                    isFirst && (this.pg.page = 1);
+                    // r为0时，表示第一次请求，需要loading；后续轮询不设置loading，避免闪烁影响用户体验
+                    r === 0 && (this.table.loading = true);
+                    const params = { tenantId: this.globalService.userData.tenantId, pageNum: this.pg.page, pageSize: this.pg.size };
+                    return this.service.historyGet(params).pipe(finalize(() => (this.table.loading = false)));
+                }),
+                takeUntil(this.destory$),
+                takeUntil(this.stopPolling$)
+            );
+        })
+    )
+    .subscribe(res => {
+        const { result } = res;
+        this.table.list = result.data || [];
+        this.pg.total = result.total || 0;
+        // 某种条件满足，停止轮询(都不是处理中0)
+        if (this.table.list.every(res => res.status !== '0')) this.stopPolling$.next();
+    });
+```
+:::warning 
+如果页面使用了缓存策略，那需要暂停轮询，有两种方案      
+一、判断页面的路由是否激活，如果非激活则暂停轮询，这里是直接取消了timer
+```js
+ngAfterViewInit() {
+    this.router.events.pipe(
+        filter(event => event instanceof NavigationStart || event instanceof NavigationEnd)
+    ).subscribe(e => {
+        console.log('%c event:', 'color: green', e, this.route);
+        if(e instanceof NavigationStart && e.url !== '/settlement/initialize') {
+        this.stopPolling$.next(true);
+        }
+        if(e instanceof NavigationEnd && e.url === '/settlement/initialize') {
+        this.search$.next(true);
+        }
+    })
+}
+this.search$
+    .pipe(
+        debounceTime(200),
+        switchMap(isFirst => {
+            return timer(0, 4000).pipe(
+                exhaustMap(r => {
+                    //。。。
+                    return from(this.initializeService.getCompanyList(queryObj)).pipe(
+                        filterSuccessResponse(),
+                        finalize(() => (this.table_loading = false))
+                    );
+                }),
+                takeUntil(this.destroy$),
+                takeUntil(this.stopPolling$)
+            );
+        })
+    )
+    .subscribe(res => {。。。 });
+```
+二、通过filter这个pipe过滤timer（理论上这个方法更优，不取消只过滤timer），但是这个实际操作下来有bug，当timer发出了一次请求，这时候请求还在pending状态，理论上路由监听会将stopPolling修改为true，但是实际操作下来，这个stopPolling还是false，导致timer继续发出请求，没有找到原因
+```js
+ngAfterViewInit() {
+    this.router.events.pipe(
+        filter(event => event instanceof NavigationStart || event instanceof NavigationEnd)
+    ).subscribe(e => {
+        if(e instanceof NavigationStart && e.url !== '/settlement/initialize') {
+            this.stopPolling = true;
+        }
+        if(e instanceof NavigationEnd && e.url === '/settlement/initialize') {
+            this.stopPolling = false;
+        }
+    })
+}
+this.search$
+    .pipe(
+        debounceTime(200),
+        switchMap(isFirst => {
+            return timer(0, 4000).pipe(
+                filter(() => !this.stopPolling),
+                exhaustMap(r => {
+                    //。。。
+                    return from(this.initializeService.getCompanyList(queryObj)).pipe(
+                        filterSuccessResponse(),
+                        finalize(() => (this.table_loading = false))
+                    );
+                }),
+                takeUntil(this.destroy$),
+                takeUntil(this.stopPolling$)
+            );
+        })
+    )
+    .subscribe(res => {。。。 });
+```
+:::
 
 ## 2. 模拟请求写法标准化
 
