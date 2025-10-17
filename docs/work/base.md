@@ -2010,3 +2010,9 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6Ijk5X3Z2aXU3UV9DNTZHRjVrWW4yR1h6aVZnTE44VC1SQ3hwcFlh
         </tr>
     </tbody>
 </table>
+
+
+## 项目问题
+1. 首次进入页面，winResizeChange装饰器装饰的页面表格高度异常
+    - 页面内部存在modal， drawer，他们内部还有包含winResizeChange装饰的组件；
+    - modal，drawer内部还有ny-page-box组件，因为modal，drawer在visible为false的情况下，渲染机制也会先渲染，所以内容可以用v-if绑定visible；

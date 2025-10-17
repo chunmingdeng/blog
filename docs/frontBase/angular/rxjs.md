@@ -66,6 +66,34 @@ const result = timer(0, 1000).pipe(
 result.subscribe(x => console.log('result:', x));
 ```
 
+### timer + exhaustMap + switchMap 模拟轮询请求
+```js
+this.search$
+    .pipe(
+        debounceTime(200),
+        switchMap(isFirst => {
+            return timer(0, 4000).pipe(
+                exhaustMap(r => {
+                    isFirst && (this.pg.page = 1);
+                    // r为0时，表示第一次请求，需要loading；后续轮询不设置loading，避免闪烁影响用户体验
+                    r === 0 && (this.table.loading = true);
+                    const params = { tenantId: this.globalService.userData.tenantId, pageNum: this.pg.page, pageSize: this.pg.size };
+                    return this.service.historyGet(params).pipe(finalize(() => (this.table.loading = false)));
+                }),
+                takeUntil(this.destory$),
+                takeUntil(this.stopPolling$)
+            );
+        })
+    )
+    .subscribe(res => {
+        const { result } = res;
+        this.table.list = result.data || [];
+        this.pg.total = result.total || 0;
+        // 某种条件满足，停止轮询(都不是处理中0)
+        if (this.table.list.every(res => res.status !== '0')) this.stopPolling$.next();
+    });
+```
+
 ![alt text](./imgs/image.png)
 
 ## 2. 模拟请求写法标准化
