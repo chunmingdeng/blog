@@ -2,7 +2,7 @@
 
 ## CA 证书是什么？
 
-> CA（Certificate Authority，证书颁发机构）证书是指由一个可信赖的第三方实体——证书颁发机构（CA）签发的数字证书。这个证书用于验证某个实体（如网站、服务器或个人）的身份，并为加密通信提供基础。在公钥基础设施（PKI, Public Key Infrastructure）中，CA 扮演着核心角色。
+> ♻️ CA（Certificate Authority，证书颁发机构）证书是指由一个可信赖的第三方实体——证书颁发机构（CA）签发的数字证书。这个证书用于验证某个实体（如网站、服务器或个人）的身份，并为加密通信提供基础。在公钥基础设施（PKI, Public Key Infrastructure）中，CA 扮演着核心角色。
 
 ::: tabs
 @tab 主要用途

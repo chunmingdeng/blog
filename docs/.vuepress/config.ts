@@ -230,6 +230,12 @@ export default defineUserConfig({
                         children: ['package'],
                     },
                     {
+                        text: '请求',
+                        prefix: 'request',
+                        collapsible: true,
+                        children: ['index', 'mqttOverWebsocket'],
+                    },
+                    {
                         text: '跨平台',
                         prefix: 'crossPlantform',
                         collapsible: true,

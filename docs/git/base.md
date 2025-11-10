@@ -153,7 +153,6 @@ git config –-global http.emptyAuth true
 ```js
 git config --global credential.helper store
 ```
-
 ## 对比工具
 > git本身和相关的插件对比一般能满足普通的对比需求了，但是在多次git commit --amend之后，想要查看追加提交的内容变更，这时候需要一点方法
 1. `git reflog` 查看追加提交对应的`hash`

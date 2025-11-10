@@ -5,11 +5,12 @@
     // $content-width: 1800px !default;
     --content-width: calc(100vw - 600px);
 
-    div[class*=language-] pre code, div[class*=language-].line-numbers-mode .line-numbers {
-        padding-top: 2.5rem!important;
+    div[class*='language-'] pre code,
+    div[class*='language-'].line-numbers-mode .line-numbers {
+        padding-top: 2.5rem !important;
     }
 
-    body:not(.copy-code-disabled) div[class*=language-]:hover::before {
+    body:not(.copy-code-disabled) div[class*='language-']:hover::before {
         display: block;
     }
 
@@ -31,4 +32,12 @@
         }
     }
 
+
+    blockquote {
+        color: #666;
+        padding: 1px 23px;
+        margin: 22px 0;
+        border-left: 4px solid #d89cf6;
+        background-color: #f4eeff;
+    }
 }
