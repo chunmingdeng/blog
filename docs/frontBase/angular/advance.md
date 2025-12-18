@@ -65,6 +65,22 @@
     }
     ```
 
+- 如何实现`error tpl`一处定义，多组件使用
+> 原理：在根组件定义模版，然后在根组件初始化（ngAfterViewInit）的时候，将模版赋给组件的属性，然后通过`@ViewChild`获取到模版，保存到globalService中的某个属性上，使用的时候在具体的组件中将globalService定义为public，然后可以在html中使用`<nz-form-contorl [nzErrorTip]='gService.getErrorTpl()'></nz-form-contorl>`直接传入对应的模版即可
+```html
+<ng-template
+    #commonErrorTipTpl
+    let-control>
+    <div *ngIf="control.hasError('maxlength')">最大长度为{{ control.errors.maxlength.requiredLength }}</div>
+    <div *ngIf="control.hasError('required')">
+        {{ _isArray(control.value) ? '必选' : '必填' }}
+    </div>
+    <div *ngIf="control.hasError('formatError')">
+        {{ control.errors.formatError }}
+    </div>
+</ng-template>
+```
+
 ### 整个form校验工具函数
 ```js
     /**
@@ -145,3 +161,71 @@ export class CusCheckboxComponent implements ControlValueAccessor, OnChanges {
 this.valueChange.emit(_this.getValidInfo());
 ```
 ***有可能name&[name]Change这种成对的形式可以完成值的绑定关系***
+
+## qiankun+nz-tooltip兼容问题
+> qiankun嵌套a（angular14）、b（angular15）两个应用，先点击b应用（b应用缓存不卸载），再点击a应用，a应用页面的tooltip元素会出现不停闪烁的情况；解决方案，直接给a应用自定义overlayContainer
+```ts
+// src/app/micro-app-overlay-container.ts
+import { Injectable, Inject, Optional } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { DOCUMENT } from '@angular/common';
+import { Platform } from '@angular/cdk/platform';
+
+/**
+ * 自定义 Overlay 容器，将浮层挂载到当前微应用的根容器内（而非 body）
+ */
+@Injectable()
+export class MicroAppOverlayContainer extends OverlayContainer {
+  constructor(
+    @Inject(DOCUMENT) private documentRef: Document,
+    private platform: Platform
+  ) {
+    super(documentRef, platform); // 👈 必须传这两个参数
+  }
+
+  protected _createContainer(): void {
+    // 尝试查找当前 Angular 应用的宿主元素（通常是 <app-root> 的父级）
+    const appRoot = this.documentRef.querySelector('app-root');
+    let containerParent = appRoot?.parentElement;
+
+    // 如果找不到 app-root，尝试找带有特定标识的容器（如 #subapp-a）
+    if (!containerParent) {
+      // 可选：根据你的 qiankun 子应用挂载节点 ID 动态匹配
+      const possibleContainers = this.documentRef.querySelectorAll('[id^="subapp-"]');
+      if (possibleContainers.length > 0) {
+        // 假设当前应用是最后一个激活的，或通过其他方式识别
+        containerParent = possibleContainers[possibleContainers.length - 1] as HTMLElement;
+      }
+    }
+
+    // 如果仍找不到，则 fallback 到 body（避免崩溃）
+    if (!containerParent) {
+      console.warn('[MicroAppOverlayContainer] 未找到子应用容器，回退到 body');
+      containerParent = this.documentRef.body;
+    }
+
+    // 创建 overlay 容器
+    const container = this.documentRef.createElement('div');
+    container.classList.add('micro-app-overlay-container');
+    container.style.position = 'fixed'; // 确保相对浏览器整体页面定位
+    container.style.top = '0';
+    container.style.left = '0';
+    container.style.width = '100%';
+    container.style.height = '100%'; // 这里不能用0，会导致容器没有高度，计算定位错误
+    container.style.pointerEvents = 'none'; // 避免遮挡
+    container.style.zIndex = '1000'; // 可根据需要调整
+
+    containerParent.appendChild(container);
+    this._containerElement = container;
+  }
+}
+```
+```ts
+// app.module.ts
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { MicroAppOverlayContainer } from './micro-overlay-container';
+
+@NgModule({
+    providers: [{ provide: OverlayContainer, useClass: MicroAppOverlayContainer }],
+})
+```
