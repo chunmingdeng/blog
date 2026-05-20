@@ -1,9 +1,11 @@
 # eslint篇
-## 相关链接
+
+## 🚀相关链接
 [中文文档](https://eslint.bootcss.com/docs/user-guide/getting-started)    
 [英文文档](https://eslint.org)
 [eslint原理分析](https://segmentfault.com/a/1190000037629653)
-## 如何配置eslint
+
+## 🚀如何配置eslint
 ### vscode中的配置
 > command+shift+p => setting.json(用户设置user setting)
 ```json
@@ -133,7 +135,7 @@ alert('foo'); /* eslint-disable-line */
 }
 ```
 
-## rules
+## 🚀rules
 ```js
 'rules': {
    "comma-dangle": ["error", "never"], //是否允许对象中出现结尾逗号

@@ -1,7 +1,7 @@
 # npm
 ---
 
-## 查找包
+## 🚀查找包
 ```sh
 # 查看rollup包的信息
 npm info rollup
@@ -11,7 +11,7 @@ npm view rollup versions
 npm view rollup version
 ```
 
-## 构建属于自己的包 rollup+ts
+## 🚀构建属于自己的包 rollup+ts
 ::: tabs
 @tab 初始化
 ```sh
@@ -63,3 +63,13 @@ export default {
 }
 ```
 :::
+
+## 🚀构建常见的问题
+
+### pnpm-lock.yaml is not up to date with package.json
+```shell
+# 输出以下下问题（通常是package.json和pnpm-lock.yaml不一致，可能是某些包在lock文件安装了，但是在package.json中未依赖，或者反过来也一样）
+WARN  using --force I sure hope you know what you are doing
+Lockfile is up to date, resolution step is skipped
+ERR_PNPM_OUTDATED_LOCKFILE  Cannot install with "frozen-lockfile" because pnpm-lock.yaml is not up to date with package.json
+```

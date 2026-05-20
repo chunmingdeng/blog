@@ -49,6 +49,12 @@ export default defineUserConfig({
                 link: 'template',
             },
             {
+                text: 'AI',
+                collapsible: true,
+                prefix: '/AI',
+                children: ['base'],
+            },
+            {
                 text: 'work',
                 collapsible: true,
                 prefix: '/work',

@@ -122,3 +122,26 @@ export class ZippyContentDirective {
 没关系，这个基本不影响你的升级，我们只需要加上`--allow-dirty`就可以了:<br>
 `ng update @angular/core@8 @angular/cli@8 --allow-dirty`
 :::
+
+## qiankun+console无法访问ng对象
+
+```js
+// 由于采用了@angular-builders/custom-webpack:browser
+// extra-webpack.config.js中配置了output
+// Angular 的调试工具（window.ng）是由 @angular/platform-browser 在标准应用启动流程中自动注入的，前提是：
+// 1应用以 普通网页模式 运行（即 <script src="main.js"> 直接加载）
+// 2入口是 main.ts → bootstrapModule(AppModule)
+// 而配置了以下后：Webpack 会把整个 bundle 包装成一个 可被外部调用的函数/模块（类似 factory(exports, require)），而不是立即执行 bootstrap。
+// 在 Qiankun 微前端架构中，主应用会手动调用这个 UMD 模块的 mount/bootstrap 方法来启动子应用。
+// → 此时 Angular 不知道“页面已加载”，也就不会自动注册 ng 到 window。
+const path = require("path");
+const webpack = require("webpack");
+const MemoryMonitorPlugin = require('./memory-monitor-plugin');
+
+module.exports = {
+    output: {
+        library: "sub-app-groupTaxReport",
+        libraryTarget: "umd",
+    },
+};
+```

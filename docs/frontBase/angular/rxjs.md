@@ -22,7 +22,7 @@ concatObservable.subscribe({
     next: result => {
         console.log(`Received value from ${result.source}: ${result.value}`);
     },
-    complete: () => console.log('complete'),
+    complete: () => console.log('complete')
 });
 ```
 
@@ -65,10 +65,15 @@ const result = timer(0, 1000).pipe(
 );
 result.subscribe(x => console.log('result:', x));
 ```
+
 ![alt text](./imgs/image.png)
 
 ### timer + exhaustMap + switchMap 模拟轮询请求
+
 ```js
+destroy$ = new Subject();
+stopPolling$ = new Subject();
+
 this.search$
     .pipe(
         debounceTime(200),
@@ -81,7 +86,7 @@ this.search$
                     const params = { tenantId: this.globalService.userData.tenantId, pageNum: this.pg.page, pageSize: this.pg.size };
                     return this.service.historyGet(params).pipe(finalize(() => (this.table.loading = false)));
                 }),
-                takeUntil(this.destory$),
+                takeUntil(this.destroy$),
                 takeUntil(this.stopPolling$)
             );
         })
@@ -94,9 +99,11 @@ this.search$
         if (this.table.list.every(res => res.status !== '0')) this.stopPolling$.next();
     });
 ```
-:::warning 
-如果页面使用了缓存策略，那需要暂停轮询，有两种方案      
+
+:::warning
+如果页面使用了缓存策略，那需要暂停轮询，有两种方案  
 一、判断页面的路由是否激活，如果非激活则暂停轮询，这里是直接取消了timer
+
 ```js
 ngAfterViewInit() {
     this.router.events.pipe(
@@ -115,10 +122,12 @@ this.search$
     .pipe(
         debounceTime(200),
         switchMap(isFirst => {
+            this.stopPolling$.next(true); // 用来abort Observable请求
             return timer(0, 4000).pipe(
                 exhaustMap(r => {
                     //。。。
-                    return from(this.initializeService.getCompanyList(queryObj)).pipe(
+                    // from(this.initializeService.getCompanyList(queryObj)) promise转Observable，真实请求无法obserVable
+                    return this.initializeService.getCompanyList(queryObj).pipe(
                         filterSuccessResponse(),
                         finalize(() => (this.table_loading = false))
                     );
@@ -130,7 +139,9 @@ this.search$
     )
     .subscribe(res => {。。。 });
 ```
-二、通过filter这个pipe过滤timer（理论上这个方法更优，不取消只过滤timer），但是这个实际操作下来有bug，当timer发出了一次请求，这时候请求还在pending状态，理论上路由监听会将stopPolling修改为true，但是实际操作下来，这个stopPolling还是false，导致timer继续发出请求，没有找到原因
+
+二、stopPolling标记位的方式：通过filter这个pipe过滤timer（理论上这个方法更优，不取消只过滤timer），但是这个实际操作下来有bug，当timer发出了一次请求，这时候请求还在pending状态，理论上路由监听会将stopPolling修改为true，但是实际操作下来，这个stopPolling还是false，导致timer继续发出请求，没有找到原因
+
 ```js
 ngAfterViewInit() {
     this.router.events.pipe(
@@ -148,6 +159,7 @@ this.search$
     .pipe(
         debounceTime(200),
         switchMap(isFirst => {
+            this.stopPolling$.next(true); // 用来abort Observable请求
             return timer(0, 4000).pipe(
                 filter(() => !this.stopPolling),
                 exhaustMap(r => {
@@ -164,24 +176,76 @@ this.search$
     )
     .subscribe(res => {。。。 });
 ```
+
 :::
+
+### expand + switchMap 模拟轮询请求
+```js
+this.search$
+  .pipe(
+    switchMap(isFirst => {
+      this.stopPolling$.next(null);
+      return of(null).pipe(
+        expand(prevResult =>
+          // 根据 previousResult 决定延迟：第一次立即，后续等待5秒
+          (prevResult === null ? of(null) : timer(5000)).pipe(
+            tap(trigger => {
+              // 如果是第一次请求且外部要求重置页码
+              if (trigger === null && isFirst) { this.pageNumber = 1; }
+              // 统一请求逻辑
+              this.table_loading = true;
+            }),
+            switchMap(trigger => {
+              const params = {
+                pageNumber: this.pageNumber,
+                // ... 其他参数
+              };
+              return this.collectService.collectLogsList(params).pipe(
+                catchError(err => {
+                  return of({ result: { list: [] } }); // 错误时返回空数据，这样还可以重新发起请求，如果return EMPTY则直接退出了
+                }),
+                finalize(() => (this.table_loading = false))
+              );
+            })
+          )
+        ),
+        // 外部停止信号
+        takeUntil(this.stopPolling$),
+        takeUntil(this.destroy$)
+      );
+    })
+  )
+  .subscribe(res => {
+    const { result } = res;
+    this.listOfData = result.list || [];
+    // 根据数据决定是否停止轮询
+    const needContinue = result.list.some(item => this.needpolling(item));
+    if (!needContinue) {
+      this.stopPolling$.next(null);
+    }
+  });
+```
 
 ## 2. 模拟请求写法标准化
 
 ```typescript
 search$ = new BehaviorSubject(null);
+destroy$ = new Subject();
+
 
 // 固定调用业务无关，无需更改
-ngOnInit() {
+searchInit() {
     this.search$
         .pipe(
+            debounceTime(500),
             switchMap(() => {
                 this.table.loading = true;
                 return this.__getTableData().pipe(
                     finalize(() => (this.table.loading = false)),
                     filterSuccessResponse()
                 );
-            })
+            }),
+            takeUntil(this.destroy$),
         )
         .subscribe(res => {
             const {data, total} = res as any;
@@ -195,11 +259,7 @@ __getTableData() {
     // ======TODO req======
     return new Observable(sub => {
         sub.next({
-            data: {
-                result: {
-                    data: Array(12).fill({ updateTime: '2025-04-23 10:23:12' })
-                },
-            }
+            data: Array(12).fill({ updateTime: '2025-04-23 10:23:12' }),
             total: 12,
             code: '0',
         });

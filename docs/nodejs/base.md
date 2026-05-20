@@ -108,6 +108,7 @@ sass_binary_site=https://npm.taobao.org/mirrors/node-sass
 chromedriver_cdnurl=https://npm.taobao.org/mirrors/chromedriver
 phantomjs_cdnurl=https://npm.taobao.org/mirrors/phantomjs
 electron_mirror=https://npm.taobao.org/mirrors/electron
+PUPPETEER_DOWNLOAD_HOST="https://npmmirror.com/mirrors"
 // .npmrc淘宝新版本仓库
 sass_binary_site=https://registry.npmmirror.com/node-sass
 chromedriver_cdnurl=https://registry.npmmirror.com/chromedriver

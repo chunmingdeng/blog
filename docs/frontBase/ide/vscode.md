@@ -17,14 +17,13 @@
 @tab keybindings.json
 ```json :collapsed-lines=15
 // Place your key bindings in this file to override the defaultsauto[]
-// Place your key bindings in this file to override the defaultsauto[]
 [
     {
         "key": "ctrl+[Backquote]",
         "command": "workbench.action.terminal.toggleTerminal"
     },
     {
-        "key": "cmd+g",
+        "key": "ctrl+g",
         "command": "workbench.action.gotoLine"
     },
     {
@@ -84,17 +83,7 @@
         "command": "-workbench.action.togglePanel"
     },
     {
-        "key": "cmd+j",
-        "command": "editor.action.joinLines",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+j",
-        "command": "-editor.action.joinLines",
-        "when": "editorTextFocus && !editorReadonly"
-    },
-    {
-        "key": "ctrl+-",
+        "key": "cmd+-",
         "command": "workbench.action.zoomOut"
     },
     {
@@ -106,7 +95,7 @@
         "command": "-workbench.action.zoomOut"
     },
     {
-        "key": "cmd+-",
+        "key": "ctrl+-",
         "command": "workbench.action.navigateBack",
         "when": "canNavigateBack"
     },
@@ -116,7 +105,7 @@
         "when": "canNavigateBack"
     },
     {
-        "key": "shift+cmd+-",
+        "key": "ctrl+shift+-",
         "command": "workbench.action.navigateForward",
         "when": "canNavigateForward"
     },
@@ -126,7 +115,7 @@
         "when": "canNavigateForward"
     },
     {
-        "key": "ctrl+=",
+        "key": "cmd+=",
         "command": "workbench.action.zoomIn"
     },
     {
@@ -237,7 +226,118 @@
     { "key": "cmd+6", "command": "workbench.action.openEditorAtIndex6" },
     { "key": "cmd+7", "command": "workbench.action.openEditorAtIndex7" },
     { "key": "cmd+8", "command": "workbench.action.openEditorAtIndex8" },
-    { "key": "cmd+9", "command": "workbench.action.openEditorAtIndex9" }
+    {
+        "key": "cmd+9",
+        "command": "workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "cmd+j",
+        "command": "editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-editor.action.joinLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "alt+j",
+        "command": "emacs.cursorDown",
+        "when": "editorTextFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "alt+j",
+        "command": "-emacs.cursorDown",
+        "when": "editorTextFocus && !suggestWidgetVisible"
+    },
+    {
+        "key": "ctrl+x b",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+g g",
+        "command": "-workbench.action.gotoLine"
+    },
+    {
+        "key": "alt+/",
+        "command": "editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "f12",
+        "command": "-editor.action.revealDefinition",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "key": "alt+,",
+        "command": "gitlens.diffWithPrevious:key",
+        "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && resource in 'gitlens:tabs:tracked'"
+    },
+    {
+        "key": "alt+cmd+g ,",
+        "command": "-gitlens.diffWithPrevious:key",
+        "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && resource in 'gitlens:tabs:tracked'"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "cmd+p",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+`",
+        "command": "-workbench.action.terminal.toggleTerminal",
+        "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-cursorLeft",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "-tongyi.show.panel.chat",
+        "when": "Lingma.Chat.active"
+    },
+    {
+        "key": "shift+cmd+l",
+        "command": "-editor.action.selectHighlights",
+        "when": "editorFocus"
+    },
+    {
+        "key": "cmd+k cmd+h",
+        "command": "git.viewFileHistory"
+    },
+    {
+        "key": "alt+h",
+        "command": "-git.viewFileHistory"
+    },
+    {
+        "key": "cmd+g b",
+        "command": "gitlens.toggleFileBlame:key",
+        "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && resource in 'gitlens:tabs:blameable'"
+    },
+    {
+        "key": "alt+cmd+g b",
+        "command": "-gitlens.toggleFileBlame:key",
+        "when": "editorTextFocus && config.gitlens.keymap == 'chorded' && resource in 'gitlens:tabs:blameable'"
+    },
+    {
+        "key": "alt+cmd+k",
+        "command": "chatgpt.addFileToThread"
+    },
+    // 以文本编辑器的方式打开搜索
+    {
+        "key": "shift+cmd+f",
+        "command": "search.action.openNewEditor"
+    }
 ]
 ```
 
