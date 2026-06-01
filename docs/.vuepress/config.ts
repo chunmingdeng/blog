@@ -1,9 +1,6 @@
 import { defineUserConfig } from 'vuepress';
 import { viteBundler } from '@vuepress/bundler-vite';
-// import { searchProPlugin } from 'vuepress-plugin-search-pro';
 import { hopeTheme } from 'vuepress-theme-hope';
-import { pwaPlugin } from '@vuepress/plugin-pwa';
-import { shikiPlugin } from '@vuepress/plugin-shiki';
 
 export default defineUserConfig({
     port: 6003,
@@ -58,6 +55,12 @@ export default defineUserConfig({
                 text: 'work',
                 collapsible: true,
                 prefix: '/work',
+                children: ['base'],
+            },
+            {
+                text: 'webAssembly',
+                collapsible: true,
+                prefix: '/webAssembly',
                 children: ['base'],
             },
             {
@@ -482,6 +485,11 @@ export default defineUserConfig({
                 collapsible: true,
                 children: ['/toolPackages/base'],
             },
+            {
+                text: '一天一个知识',
+                collapsible: true,
+                children: ['/knowledge/base', '/knowledge/cpu'],
+            },
         ],
         markdown: {
             math: {
@@ -496,14 +504,17 @@ export default defineUserConfig({
             component: true,
             highlighter: {
                 type: 'shiki', // or "prismjs"
+                collapsedLines: true, 
+                theme: 'material-theme-lighter', 
+                notationFocus: true
 
                 // shiki 或 prismjs 选项
                 // ...
             },
+            mermaid: true
         },
     }),
     base: '/blog/',
     // href需要带上base
     head: [['link', { rel: 'icon', href: '/blog/favicon.ico' }]],
-    plugins: [shikiPlugin({ collapsedLines: true, theme: 'material-theme-lighter', notationFocus: true })],
 });
