@@ -238,7 +238,8 @@ searchInit() {
     this.search$
         .pipe(
             debounceTime(500),
-            switchMap(() => {
+            switchMap((isFirstPage) => {
+                isFirstPage && this.pg.page = 1;
                 this.table.loading = true;
                 return this.__getTableData().pipe(
                     finalize(() => (this.table.loading = false)),
@@ -265,5 +266,9 @@ __getTableData() {
         });
         sub.complete();
     }).pipe(delay(2000));
+}
+
+onSearch(isFirstPage: false) {
+    this.search$.next(isFirstPage)
 }
 ```
