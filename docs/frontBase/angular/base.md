@@ -145,3 +145,198 @@ module.exports = {
     },
 };
 ```
+
+## standalone 组件
+
+:::tabs
+@tab 组件定义
+```TypeScript
+// component 定义
+import { forwardRef } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { FormsModule } from '@angular/forms';
+import { Debounce } from 'lodash-decorators';
+import { ChangeDetectorRef } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
+const CUSTOMER_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => CusSelectMultipleComponent),
+    multi: true
+};
+
+@Component({
+    standalone: true,
+    selector: 'cus-select-multiple',
+    template: `
+        <div style="width: 300px">
+            <nz-select
+                [nzPlaceHolder]="请选择"
+                [nzDropdownRender]="render"
+                (nzOnSearch)="onSearch($event)"
+                style="width: 100%"
+                [(ngModel)]="value2Show"
+                (ngModelChange)="onValueChange($event)"
+                nzDropdownClassName="cus-select-multiple-top-overlay"
+                [nzNotFoundContent]='null'
+                nzServerSearch
+                nzAllowClear
+                nzShowSearch>
+                <nz-option
+                    [nzValue]="showString"
+                    [nzLabel]="showString"></nz-option>
+            </nz-select>
+
+            <ng-template #render>
+                <ul class="cdk-overlay-select-options-cus">
+                    <nz-empty
+                        [nzNotFoundContent]="contentTpl"
+                        *ngIf="searchOptionResult.length === 0">
+                        <ng-template #contentTpl>
+                            <span style="color: #999">暂无数据</span>
+                        </ng-template>
+                    </nz-empty>
+                    <ng-container *ngFor="let l of searchOptionResult">
+                        <li>
+                            <label
+                                nz-checkbox
+                                [(ngModel)]="l.checked"
+                                [nzDisabled]="l.disabled"
+                                (ngModelChange)="onItemChange()">
+                                {{ l.label }}
+                            </label>
+                        </li>
+                    </ng-container>
+                </ul>
+            </ng-template>
+        </div>
+    `,
+    host: { class: 'cus-select-multiple' },
+    providers: [CUSTOMER_VALUE_ACCESSOR],
+    imports: [NzSelectModule, NzEmptyModule, NzCheckboxModule, FormsModule, CommonModule]
+})
+export class CusSelectMultipleComponent implements ControlValueAccessor, OnChanges, AfterViewInit, OnInit {
+    @Input() options: Array<{ label: string; value: number; checked: boolean }> = [
+        {
+            label: '未生成',
+            value: 0,
+            checked: false
+        },
+        {
+            label: '生成中',
+            value: 1,
+            checked: false
+        },
+        {
+            label: '生成成功',
+            value: 2,
+            checked: false
+        },
+        {
+            label: '生成失败',
+            value: -1,
+            checked: false
+        },
+        {
+            label: '无需生成',
+            value: 3,
+            checked: false
+        },
+        {
+            label: '未达条件',
+            value: 4,
+            checked: false
+        }
+    ];
+
+    showString = null;
+    _propagteOnChange: (v: any) => void;
+    _propagteOnTouch: (v: any) => void;
+    _value = [];
+    value2Show = '';
+    searchText = null;
+    searchOptionResult = [];
+
+    constructor(private cdr: ChangeDetectorRef) {}
+
+    ngOnChanges(changes: SimpleChanges): void {}
+
+    ngOnInit(): void {
+        this.searchOptionResult = [].concat(this.options);
+        this.updateLable();
+    }
+
+    ngAfterViewInit(): void {}
+
+    writeValue(obj: any): void {
+        if (obj) {
+            this._value = obj;
+            this.options.map(r => (r.checked = this._value.includes(r.value)));
+            this.updateLable();
+        }
+    }
+
+    registerOnChange(fn: any): void {
+        this._propagteOnChange = fn;
+    }
+
+    registerOnTouched(fn: any): void {
+        this._propagteOnTouch = fn;
+    }
+
+    changeHandler(val) {
+        this._value = val;
+        this._propagteOnChange(val);
+    }
+
+    @Debounce(200, { leading: true, trailing: true })
+    onSearch(text) {
+        this.searchText = text;
+        this.searchOptionResult = this.options.filter(r => r.label.includes(text));
+        setTimeout(() => this.cdr.markForCheck(), 0);
+    }
+
+    @Debounce(100)
+    updateLable() {
+        const sel = this.options.filter(r => r.checked);
+        this.showString =
+            `已选择${sel.length}个维度：` +
+            sel.reduce((acc, r, i) => {
+                return acc + `${i === 0 ? r.label : '，' + r.label}`;
+            }, '');
+        this.value2Show = this.showString;
+        if (sel.length === 0) this.value2Show = null;
+    }
+
+    onValueChange(v) {
+        if (v === null || v?.length === 0) {
+            this.options.map(r => (r.checked = false));
+        }
+        this.updateLable();
+        const sel = this.options.filter(r => r.checked);
+        this.changeHandler(sel.map(r => r.value));
+    }
+
+    onItemChange() {
+        this.updateLable();
+        const sel = this.options.filter(r => r.checked);
+        this.changeHandler(sel.map(r => r.value));
+    }
+}
+```
+
+@tab 模块引用
+```TypeScript
+import { CusSelectMultipleComponent } from './components/sheet-import-modal/sheet-import-modal.component';
+
+@NgModule({
+  declarations: [],
+  imports: [
+    CusSelectMultipleComponent,
+  ],
+})
+export class AccountBalanceModule {}
+```

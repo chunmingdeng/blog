@@ -59,7 +59,13 @@ const corsOptions = {
       withCredentials: true
     });
     // 传入HttpRequest对象作为参数会自动出发observe events，返回事件信息
-    return this.http.request(req).subscribe(
+    return this.http.request(req).pipe(
+      timeout(30000), // 30秒超时
+      catchError(err => {
+        this.msg.error('上传超时，请重试');
+        return throwError(err);
+      })
+    ).subscribe(
       (event: HttpEvent<{}>) => {
         if (event.type === HttpEventType.UploadProgress) {
           if (event.total! > 0) {
