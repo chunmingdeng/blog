@@ -41,6 +41,11 @@ html {
 }
 ```
 
+### 垂直方向滚动条
+1. 利用js创建dom元素，设置`overflow: scroll;` 然后通过`dom.offsetHeight - dom.clientHeight`计算滚动条的宽度
+  - 有时会出现计算所得和css设置的宽度不一致，可能是该dom元素设置了`scrollbar-color: transparent transparent;`这个会导致你设置的滚动条宽度失效，变成浏览器默认的15px
+2. 利用需要隐藏滚动条元素的`margin`，比如要隐藏底部滚动条，设置`margin-bottom: [负的滚动条宽度]px`可以将下方元素向上便宜覆盖滚动条（滚动条还在，只是不占空间，视觉看不到了）
+
 
 ## 字体文件[link](https://zhuanlan.zhihu.com/p/469283417)
 > 如何自己制作字体问题件
