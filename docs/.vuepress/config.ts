@@ -203,6 +203,17 @@ export default defineUserConfig({
                         ],
                     },
                     {
+                        text: 'test',
+                        prefix: 'test',
+                        collapsible: true,
+                        children: [
+                            {
+                                text: 'base',
+                                link: 'base',
+                            },
+                        ],
+                    },
+                    {
                         text: 'vue',
                         prefix: 'vue',
                         collapsible: true,
