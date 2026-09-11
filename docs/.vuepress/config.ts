@@ -120,7 +120,7 @@ export default defineUserConfig({
                         text: 'browser',
                         prefix: 'browser',
                         collapsible: true,
-                        children: ['base', 'chrome'],
+                        children: ['base', 'chrome', 'indexDB'],
                     },
                     {
                         text: 'css',
