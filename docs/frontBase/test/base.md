@@ -404,3 +404,11 @@ test.describe('房产税从价减免信息', () => {
   });
 });
 ```
+
+@tab 运行测试
+```shell
+# 挨个执行所有的测试文件
+cd test & npx playwright test
+# 执行某个具体的测试文件
+cd test & npx playwright test aaa.spec.ts
+```

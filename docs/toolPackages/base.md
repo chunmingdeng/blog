@@ -194,9 +194,29 @@ server.listen(3000, () => console.log('server listen at port 3000'))
 ## 🚀viewerjs [link](https://fengyuanchen.github.io/viewerjs/)
 > 一个用于图片查看器的库
 
+## idb
+> npm idb 这个库的核心作用是：把浏览器原生 IndexedDB 那套复杂、基于事件的 API，包装成一套用起来更顺手的 Promise 风格 API。
 
+你可以把它理解成 IndexedDB 的一个“易用性外壳”，它本身不存储数据，底层用的还是浏览器的 IndexedDB，只是让调用方式变简单了。
 
+🎯 它主要解决了什么问题？
 
+原生的 IndexedDB API 写起来比较繁琐，而 idb 主要做了这几件事让开发体验变好：
+
+把事件变成 Promise：原生 API 操作数据库会返回 IDBRequest 对象，你需要监听 onsuccess 和 onerror 事件。idb 把所有这类方法都变成了返回 Promise 的形式，你可以直接用 await，代码清爽很多。
+提供快捷方法：针对最常见的单次读写操作，它提供了 db.get()、db.put() 这类快捷方法，省去了手动开启事务、获取对象仓库的步骤。
+事务管理更友好：事务对象上增加了 .done 属性（一个 Promise），方便你确认事务是否成功提交。同时，如果事务只涉及一个对象仓库，可以直接用 tx.store 拿到它。
+支持异步迭代：可以配合 for await...of 循环来遍历数据，处理大量记录时代码会更直观。
+📦 它的生态位与使用场景
+
+这个库非常轻量（gzip 后仅约 1KB 左右），在 npm 上非常流行，每周下载量高达千万级别，是浏览器端存储的事实标准之一。
+
+它适合的场景：
+
+需要在浏览器端存储大量结构化数据（远超 localStorage 的 5MB 限制）。
+需要存储对象、文件等复杂数据类型，而不只是字符串。
+希望使用异步、非阻塞的方式读写数据。
+如果你只需要一个简单的 key-value 存储，也可以看看作者同系列的 idb-keyval，那个更极简；如果需求更复杂，idb 本身也提供了完整的类型支持。
 
 
 
