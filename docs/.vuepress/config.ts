@@ -474,7 +474,7 @@ export default defineUserConfig({
             {
                 text: '日常工具',
                 collapsible: true,
-                children: ['/dailyTools/base', '/dailyTools/xmind', '/dailyTools/jenkins', '/dailyTools/vm'],
+                children: ['/dailyTools/base', '/dailyTools/xmind', '/dailyTools/jenkins', '/dailyTools/vm', '/dailyTools/maven-profile'],
             },
             {
                 text: '数学',
