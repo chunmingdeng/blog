@@ -354,6 +354,10 @@ export default defineUserConfig({
                         link: 'jsPlumb',
                     },
                     {
+                        text: 'pretext',
+                        link: 'pretext',
+                    },
+                    {
                         text: 'pixijs',
                         prefix: 'pixijs',
                         collapsible: true,
